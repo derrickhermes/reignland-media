@@ -22,9 +22,9 @@
   .brand{display:flex;align-items:center;gap:10px}
   .brand img{height:32px;width:auto;display:block}
   .brand-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#e2e8f0}
-  .brand-text span{background:linear-gradient(90deg,#ff1493,#8b5cf6,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .nav-cta{background:linear-gradient(90deg,#ff1493,#8b5cf6);color:#fff;font-weight:600;padding:10px 22px;border-radius:8px;font-size:14px;min-height:44px;display:inline-flex;align-items:center;transition:opacity .2s,box-shadow .2s}
-  .nav-cta:hover{opacity:.9;box-shadow:0 0 20px rgba(139,92,246,.35)}
+  .brand-text span{color:#ff2d78}
+  .nav-cta{background:linear-gradient(90deg,#ff1493,#8b5cf6);color:#fff;font-weight:600;padding:10px 22px;border-radius:8px;font-size:14px;min-height:44px;display:inline-flex;align-items:center;border:1px solid transparent;transition:border-color .2s,opacity .2s}
+  .nav-cta:hover{opacity:.92;border-color:rgba(255,255,255,.25)}
 
   /* ── Hero ── */
   .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
@@ -32,8 +32,8 @@
   .hero .overlay{position:absolute;inset:0;background:linear-gradient(0deg,#0b0d12 0%,rgba(11,13,18,.35) 50%,rgba(11,13,18,.2) 100%);z-index:1}
   .hero .glow{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 20% 100%,rgba(255,20,147,.18),transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(34,211,238,.12),transparent 50%)}
   .hero-content{position:relative;z-index:2;padding:120px 0 90px;max-width:720px}
-  .hero .kicker{font-weight:600;font-size:13px;letter-spacing:.13em;text-transform:uppercase;background:linear-gradient(90deg,#ff1493,#8b5cf6,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
-  .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,5vw,56px);font-weight:700;line-height:1.06;letter-spacing:-.015em;margin-bottom:18px;color:#fff}
+  .hero .kicker{font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#8892a8;margin-bottom:14px}
+  .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,5vw,56px);font-weight:700;line-height:1.06;letter-spacing:-.022em;margin-bottom:18px;color:#fff}
   .hero p{font-size:clamp(16px,1.9vw,19px);color:#a0aec0;margin-bottom:32px;max-width:54ch}
   .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
   .btn{min-height:48px;display:inline-flex;align-items:center;padding:13px 28px;border-radius:8px;font-weight:600;font-size:15px;transition:all .2s}
@@ -45,14 +45,14 @@
   /* ── Section common ── */
   section{padding:80px 0}
   section.alt{background:#0f1219}
-  section h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.01em;line-height:1.15;margin-bottom:12px}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8b5cf6;margin-bottom:12px}
+  section h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
   .section-lede{color:#a0aec0;font-size:16px;max-width:58ch;margin-bottom:32px}
-  .accent-line{width:48px;height:3px;border-radius:2px;background:linear-gradient(90deg,#ff1493,#8b5cf6);margin:0 0 24px}
 
   /* ── Portfolio ── */
   .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
   .port-item{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.06);background:#0f1219;transition:border-color .2s,box-shadow .2s}
-  .port-item:hover{border-color:#8b5cf6aa;box-shadow:0 8px 30px rgba(0,0,0,.4),0 0 24px rgba(139,92,246,.22)}
+  .port-item:hover{border-color:#8b5cf6aa}
   .port-item iframe,.port-item .thumb{width:100%;aspect-ratio:16/9;border:0;display:block;object-fit:cover}
   .port-item .info{padding:16px 18px}
   .port-item .info h3{font-size:15px;font-weight:600;margin-bottom:4px}
@@ -62,14 +62,14 @@
   .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:520px){.gallery{grid-template-columns:1fr 1fr}}
-  .gallery a{display:block;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:transform .25s,box-shadow .25s,border-color .25s}
-  .gallery a:hover{transform:scale(1.02);border-color:#8b5cf6;box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 20px rgba(139,92,246,.3)}
+  .gallery a{display:block;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:border-color .2s}
+  .gallery a:hover{border-color:#8b5cf6}
   .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
 
   /* ── Trust ── */
   .badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
   .badge{font-size:13px;font-weight:500;padding:7px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:#a0aec0}
-  .badge.highlight{background:linear-gradient(90deg,#ff149322,#8b5cf622);border-color:#8b5cf666;color:#e2e8f0}
+  .badge.highlight{background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.4);color:#e2e8f0}
   .trust-note{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px;margin-top:8px}
   .trust-note p{color:#a0aec0;font-size:15px;max-width:60ch}
   .trust-note p+p{margin-top:14px}
@@ -79,12 +79,12 @@
   .service{border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px;background:rgba(255,255,255,.01);transition:border-color .2s}
   .service:hover{border-color:#8b5cf655}
   .service h3{font-size:17px;font-weight:600;margin-bottom:6px}
-  .service .price{font-weight:700;font-size:16px;background:linear-gradient(90deg,#ff1493,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+  .service .price{font-weight:700;font-size:16px;color:#ff2d78;margin-bottom:8px}
   .service p{color:#a0aec0;font-size:14.5px}
 
   /* ── Stats ── */
   .stats{display:flex;gap:48px;flex-wrap:wrap;margin-bottom:36px}
-  .stat .num{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;background:linear-gradient(90deg,#ff1493,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.015em}
+  .stat .num{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;background:linear-gradient(90deg,#ff1493,#8b5cf6,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em}
   .stat .lbl{color:#a0aec0;font-size:13px;margin-top:2px}
   .quotes{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.quotes{grid-template-columns:1fr}}
   blockquote{border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:24px;font-size:15px;color:#a0aec0;background:rgba(255,255,255,.01)}
@@ -139,7 +139,7 @@
 
 <section id="portfolio">
   <div class="wrap">
-    <div class="accent-line"></div>
+    <p class="eyebrow">Featured work</p>
     <h2>Featured work</h2>
     <p class="section-lede">Real projects, real results — venue tours, property fly-throughs, construction progress and coastal aerials across the Sunshine Coast region.</p>
     <div class="portfolio-grid">
@@ -165,7 +165,7 @@
 
 <section class="alt" id="gallery">
   <div class="wrap">
-    <div class="accent-line"></div>
+    <p class="eyebrow">Portfolio gallery</p>
     <h2>Portfolio gallery</h2>
     <p class="section-lede">Aerial stills captured across Queensland venues, properties and coastlines.</p>
     <div class="gallery">
@@ -183,7 +183,7 @@
 
 <section>
   <div class="wrap">
-    <div class="accent-line"></div>
+    <p class="eyebrow">Trust &amp; licensing</p>
     <h2>CASA-approved · Fully insured</h2>
     <p class="section-lede">Commercial FPV flying in Australia requires a CASA EVLOS approval. We hold one — so your venue, your guests and your insurance are never at risk.</p>
     <div class="badges">
@@ -204,7 +204,7 @@
 
 <section class="alt">
   <div class="wrap">
-    <div class="accent-line"></div>
+    <p class="eyebrow">Services</p>
     <h2>Services</h2>
     <p class="section-lede">From one-take FPV tours to standard aerials and night operations — every job is planned around your space and your schedule.</p>
     <div class="services">
@@ -229,7 +229,7 @@
 
 <section>
   <div class="wrap">
-    <div class="accent-line"></div>
+    <p class="eyebrow">By the numbers</p>
     <h2>Nine years in the air</h2>
     <div class="stats">
       <div class="stat"><div class="num">9 yrs</div><div class="lbl">Drone operations</div></div>
@@ -246,7 +246,7 @@
 
 <section class="alt">
   <div class="wrap">
-    <div class="accent-line"></div>
+    <p class="eyebrow">Quick answers</p>
     <h2>Quick answers</h2>
     <div class="faq-grid">
       <div class="faq-item">
@@ -272,12 +272,12 @@
 <footer>
   <div class="wrap">
     <div class="footer-logo"><img src="assets/logo-web.png" alt="Reignland Media logo"></div>
+    <p class="eyebrow">Get in touch</p>
     <h2>Ready to see your place from inside the action?</h2>
     <p class="section-lede" style="margin-bottom:0">Message us with your venue or listing and we&rsquo;ll come back with a same-day quote.</p>
     <div class="footer-links">
       <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener">Message on Facebook</a>
       <a class="btn btn-ghost" href="mailto:admin_derrick@proton.me">Email us</a>
-      <a class="btn btn-ghost" href="https://dronesforhire.com.au/drone-operator/5410/reignscott%20drone%20imagery" rel="noopener">Quote via DronesForHire</a>
     </div>
     <div class="fineprint">
       <p>Reignland Media (formerly Reignscott Drone Imagery Pty Ltd) &middot; Sunshine Coast, Queensland</p>
