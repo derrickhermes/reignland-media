@@ -71,6 +71,39 @@
     color:var(--text-body);text-decoration:none;border-bottom:.5px solid var(--border);padding-bottom:6px}
 
   /* telemetry corner — flight-deck signature */
+  /* ---------- SECTION: flight log (portfolio) ---------- */
+  .section{position:relative;background:var(--canvas);border-top:.5px solid var(--border);
+    padding:108px 40px}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+    margin-bottom:56px;flex-wrap:wrap}
+  .sec-label{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--neon-cyan);margin-bottom:14px}
+  .sec-title{font-family:'Major Mono Display',monospace;font-weight:400;
+    font-size:clamp(40px,4.5vw,64px);line-height:1.02;color:var(--text-primary)}
+  .sec-lede{font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.7;
+    color:var(--text-primary);max-width:46ch;text-align:left}
+
+  /* asymmetric grid — no identical cards in a row */
+  .work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .work-item{position:relative;border:.5px solid var(--border);border-radius:6px;
+    overflow:hidden;background:var(--surface)}
+  .work-item iframe,.work-item img{width:100%;aspect-ratio:16/9;border:0;display:block;object-fit:cover}
+  .w-feature{grid-column:span 7}
+  .w-stack{grid-column:span 5;display:grid;gap:24px}
+  .w-wide{grid-column:span 12}
+  .w-wide iframe{aspect-ratio:21/9}
+  .work-meta{display:flex;align-items:baseline;gap:14px;padding:14px 16px;
+    border-top:.5px solid var(--border);font-family:'JetBrains Mono',monospace}
+  .work-meta .idx{font-size:11px;color:var(--neon-pink);letter-spacing:.1em}
+  .work-meta .t{font-size:13px;color:var(--text-primary)}
+  .work-meta .loc{font-size:11px;color:var(--text-body);margin-left:auto;letter-spacing:.08em}
+
+  /* stills strip — uniform 4:3 grid (even-gallery rule) */
+  .stills-head{margin-top:88px}
+  .stills{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+  .stills a{display:block;border:.5px solid var(--border);border-radius:6px;overflow:hidden}
+  .stills img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+
   .telemetry{position:absolute;right:40px;bottom:44px;z-index:3;text-align:right;
     font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.1em;color:var(--text-body);line-height:2.1}
   .telemetry b{color:var(--neon-cyan);font-weight:400}
@@ -120,6 +153,55 @@
     <div><b>lat</b> -26.65 · <b>lon</b> 152.95</div>
     <div><b>alt</b> 12m · <b>spd</b> 8.4 m/s</div>
     <div><b>reel</b> 32s · 4k source</div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">log 01 — flight record</p>
+      <h2 class="sec-title">selected work</h2>
+    </div>
+    <p class="sec-lede">Real projects across Queensland — venue fly-throughs, property tours, construction progress and coastal aerials. Every video below is a single continuous take.</p>
+  </div>
+
+  <div class="work-grid">
+    <div class="work-item w-feature">
+      <iframe src="https://www.youtube.com/embed/8Pe-GUB29eQ" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+      <div class="work-meta"><span class="idx">log_01</span><span class="t">Terella Brewing — FPV venue tour</span><span class="loc">brewery · qld</span></div>
+    </div>
+    <div class="w-stack">
+      <div class="work-item">
+        <iframe src="https://www.youtube.com/embed/HK7Ze9S3kC4" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <div class="work-meta"><span class="idx">log_02</span><span class="t">138 Callistemon Court — property fly-through</span><span class="loc">cootharaba</span></div>
+      </div>
+      <div class="work-item">
+        <iframe src="https://www.youtube.com/embed/6D-DWX2U0mY" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <div class="work-meta"><span class="idx">log_03</span><span class="t">Real estate FPV tours</span><span class="loc">seq properties</span></div>
+      </div>
+    </div>
+    <div class="work-item w-wide">
+      <iframe src="https://www.youtube.com/embed/P2C3zVjFlac" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+      <div class="work-meta"><span class="idx">log_04</span><span class="t">Developer project — construction progress + site aerials</span><span class="loc">mavic 3 pro</span></div>
+    </div>
+  </div>
+
+  <div class="sec-head stills-head">
+    <div>
+      <p class="sec-label">log 02 — stills</p>
+      <h2 class="sec-title">aerial imagery</h2>
+    </div>
+    <p class="sec-lede">High-resolution aerial stills for listings, marketing and site documentation — captured across Queensland properties, venues and coastlines.</p>
+  </div>
+  <div class="stills">
+    <a href="https://dronesforhire.com.au/assets/uploads/2025-4/5410-v924z1ofpt.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2025-4/5410-v924z1ofpt.jpg" loading="lazy" alt="Aerial venue shot"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2024-5/5410-v2kgqk1pjh.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2024-5/5410-v2kgqk1pjh.jpg" loading="lazy" alt="Coastal aerial"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2023-0/5410-s7p4mol8xd.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2023-0/5410-s7p4mol8xd.jpg" loading="lazy" alt="Property aerial"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2022-5/5410-lszldej2bm.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-5/5410-lszldej2bm.jpg" loading="lazy" alt="Event aerial"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2022-4/5410-fv8zy5p5md.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-4/5410-fv8zy5p5md.jpg" loading="lazy" alt="Construction progress"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2022-1/5410-qvyr9v6q3j.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-1/5410-qvyr9v6q3j.jpg" loading="lazy" alt="Sunshine Coast aerial"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2022-0/5410-zig7azm8av.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-0/5410-zig7azm8av.jpg" loading="lazy" alt="Aerial landscape"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2022-4/5410-lj5m0389gv.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-4/5410-lj5m0389gv.jpg" loading="lazy" alt="Real estate listing"></a>
   </div>
 </section>
 
