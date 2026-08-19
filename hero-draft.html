@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reignland — Hero v2 draft (mono + video)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +16,7 @@
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--canvas);font-family:'Inter',sans-serif;color:var(--text-primary)}
 
-  .hero{position:relative;width:1440px;height:810px;overflow:hidden}
+  .hero{position:relative;width:100%;min-height:100vh;display:flex;overflow:hidden}
   .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   /* legibility scrim — deeper behind the text block so thin mono strokes
      survive bright footage moments; footage stays visible right/top */
@@ -76,11 +77,11 @@
     padding:108px 40px}
   .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
     margin-bottom:56px;flex-wrap:wrap}
-  .sec-label{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+  .sec-label{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;
     letter-spacing:.14em;text-transform:uppercase;color:var(--neon-cyan);margin-bottom:14px}
   .sec-title{font-family:'Major Mono Display',monospace;font-weight:400;
     font-size:clamp(40px,4.5vw,64px);line-height:1.02;color:var(--text-primary)}
-  .sec-lede{font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.7;
+  .sec-lede{font-family:'JetBrains Mono',monospace;font-size:15px;line-height:1.7;
     color:var(--text-primary);max-width:46ch;text-align:left}
 
   /* asymmetric grid — no identical cards in a row */
@@ -92,11 +93,10 @@
   .w-stack{grid-column:span 5;display:grid;gap:24px}
   .w-wide{grid-column:span 12}
   .w-wide iframe{aspect-ratio:21/9}
-  .work-meta{display:flex;align-items:baseline;gap:14px;padding:14px 16px;
+  .work-meta{display:flex;align-items:baseline;gap:14px;padding:16px 18px;
     border-top:.5px solid var(--border);font-family:'JetBrains Mono',monospace}
-  .work-meta .idx{font-size:11px;color:var(--neon-pink);letter-spacing:.1em}
-  .work-meta .t{font-size:13px;color:var(--text-primary)}
-  .work-meta .loc{font-size:11px;color:var(--text-body);margin-left:auto;letter-spacing:.08em}
+  .work-meta .t{font-size:15px;color:var(--text-primary)}
+  .work-meta .loc{font-size:12.5px;color:var(--text-body);margin-left:auto;letter-spacing:.08em}
 
   /* stills strip — uniform 4:3 grid (even-gallery rule) */
   .stills-head{margin-top:88px}
@@ -159,8 +159,8 @@
 <section class="section" id="work">
   <div class="sec-head">
     <div>
-      <p class="sec-label">log 01 — flight record</p>
-      <h2 class="sec-title">selected work</h2>
+      <p class="sec-label">our work</p>
+      <h2 class="sec-title">featured work</h2>
     </div>
     <p class="sec-lede">Real projects across Queensland — venue fly-throughs, property tours, construction progress and coastal aerials. Every video below is a single continuous take.</p>
   </div>
@@ -168,27 +168,27 @@
   <div class="work-grid">
     <div class="work-item w-feature">
       <iframe src="https://www.youtube.com/embed/8Pe-GUB29eQ" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-      <div class="work-meta"><span class="idx">log_01</span><span class="t">Terella Brewing — FPV venue tour</span><span class="loc">brewery · qld</span></div>
+      <div class="work-meta"><span class="t">Terella Brewing — FPV venue tour</span><span class="loc">brewery · qld</span></div>
     </div>
     <div class="w-stack">
       <div class="work-item">
         <iframe src="https://www.youtube.com/embed/HK7Ze9S3kC4" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div class="work-meta"><span class="idx">log_02</span><span class="t">138 Callistemon Court — property fly-through</span><span class="loc">cootharaba</span></div>
+        <div class="work-meta"><span class="t">138 Callistemon Court — property fly-through</span><span class="loc">cootharaba</span></div>
       </div>
       <div class="work-item">
         <iframe src="https://www.youtube.com/embed/6D-DWX2U0mY" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div class="work-meta"><span class="idx">log_03</span><span class="t">Real estate FPV tours</span><span class="loc">seq properties</span></div>
+        <div class="work-meta"><span class="t">Real estate FPV tours</span><span class="loc">seq properties</span></div>
       </div>
     </div>
     <div class="work-item w-wide">
       <iframe src="https://www.youtube.com/embed/P2C3zVjFlac" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-      <div class="work-meta"><span class="idx">log_04</span><span class="t">Developer project — construction progress + site aerials</span><span class="loc">mavic 3 pro</span></div>
+      <div class="work-meta"><span class="t">Developer project — construction progress + site aerials</span><span class="loc">mavic 3 pro</span></div>
     </div>
   </div>
 
   <div class="sec-head stills-head">
     <div>
-      <p class="sec-label">log 02 — stills</p>
+      <p class="sec-label">stills</p>
       <h2 class="sec-title">aerial imagery</h2>
     </div>
     <p class="sec-lede">High-resolution aerial stills for listings, marketing and site documentation — captured across Queensland properties, venues and coastlines.</p>
