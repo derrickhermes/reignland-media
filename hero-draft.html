@@ -81,6 +81,10 @@
     letter-spacing:.14em;text-transform:uppercase;color:var(--neon-cyan);margin-bottom:14px}
   .sec-title{font-family:'Major Mono Display',monospace;font-weight:400;
     font-size:clamp(40px,4.5vw,64px);line-height:1.02;color:var(--text-primary)}
+  /* gradient section titles via SVG (same technique as hero headline) */
+  .sec-title-svg{display:block;height:auto;overflow:visible;margin-left:-4px}
+  .sec-title-svg text{font-family:'Major Mono Display',monospace;font-size:64px;letter-spacing:-.01em;
+    stroke:rgba(6,9,12,.5);stroke-width:1.5px;paint-order:stroke;stroke-linejoin:round}
   .sec-lede{font-family:'JetBrains Mono',monospace;font-size:15px;line-height:1.7;
     color:var(--text-primary);max-width:46ch;text-align:left}
 
@@ -111,6 +115,17 @@
 </head>
 <body>
 
+<!-- shared gradient definition for all SVG text on the page -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff2e88"/>
+      <stop offset="0.5" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+</svg>
+
 <section class="hero">
   <video autoplay muted loop playsinline
          poster="assets/hero-poster.jpg"
@@ -132,13 +147,6 @@
     <p class="readout rainbow"><span class="lead">FPV FLY-THROUGH</span> · NORTH BRISBANE · SUNSHINE COAST · GYMPIE · FRASER COAST · BUNDABERG</p>
     <h1 class="sr-only">the whole property. one flight.</h1>
     <svg class="h1svg" viewBox="0 0 1180 196" role="img" aria-label="the whole property. one flight.">
-      <defs>
-        <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stop-color="#ff2e88"/>
-          <stop offset="0.5" stop-color="#8b5cf6"/>
-          <stop offset="1" stop-color="#22d3ee"/>
-        </linearGradient>
-      </defs>
       <text x="0" y="86" fill="url(#brandGrad)">the whole property.</text>
       <text x="0" y="178" fill="url(#brandGrad)">one flight.</text>
     </svg>
@@ -159,10 +167,12 @@
 <section class="section" id="work">
   <div class="sec-head">
     <div>
-      <p class="sec-label">our work</p>
-      <h2 class="sec-title">featured work</h2>
+      <p class="sec-label">featured work</p>
+      <svg class="sec-title-svg" width="480" height="84" viewBox="0 0 480 84" role="img" aria-label="showreel">
+        <text x="0" y="66" fill="url(#brandGrad)">showreel</text>
+      </svg>
     </div>
-    <p class="sec-lede">Real projects across Queensland — venue fly-throughs, property tours, construction progress and coastal aerials. Every video below is a single continuous take.</p>
+    <p class="sec-lede">One continuous flight through a brewery, a family home, and a work site — no cuts, no edits. This is what a single take can show.</p>
   </div>
 
   <div class="work-grid">
@@ -176,7 +186,7 @@
         <div class="work-meta"><span class="t">138 Callistemon Court — property fly-through</span><span class="loc">cootharaba</span></div>
       </div>
       <div class="work-item">
-        <iframe src="https://www.youtube.com/embed/6D-DWX2U0mY" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/awuMI-1ZAtE" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
         <div class="work-meta"><span class="t">Real estate FPV tours</span><span class="loc">seq properties</span></div>
       </div>
     </div>
@@ -189,7 +199,9 @@
   <div class="sec-head stills-head">
     <div>
       <p class="sec-label">stills</p>
-      <h2 class="sec-title">aerial imagery</h2>
+      <svg class="sec-title-svg" width="780" height="84" viewBox="0 0 780 84" role="img" aria-label="aerial imagery">
+        <text x="0" y="66" fill="url(#brandGrad)">aerial imagery</text>
+      </svg>
     </div>
     <p class="sec-lede">High-resolution aerial stills for listings, marketing and site documentation — captured across Queensland properties, venues and coastlines.</p>
   </div>
