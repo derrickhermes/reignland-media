@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reignland Media — FPV Drone Tours & Aerial Media | Sunshine Coast</title>
+<meta name="description" content="Cinematic FPV drone fly-throughs, aerial photography and video. CASA EVLOS-approved and fully insured. Servicing from North Brisbane Suburbs, Sunshine Coast and Fraser Coast. FPV tours from $495.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>html{overflow:hidden}body{margin:0;overflow:hidden}.slice{transform:translateY(-950px);will-change:transform}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#0b0d12;color:#e2e8f0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;text-wrap:pretty}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+
+  /* ── Nav ── */
+  nav{position:sticky;top:0;z-index:20;background:rgba(11,13,18,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{height:32px;width:auto;display:block}
+  .brand-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#e2e8f0}
+  .brand-text span{background:linear-gradient(90deg,#ff1493,#8b5cf6,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-cta{background:linear-gradient(90deg,#ff1493,#8b5cf6);color:#fff;font-weight:600;padding:10px 22px;border-radius:8px;font-size:14px;min-height:44px;display:inline-flex;align-items:center;transition:opacity .2s,box-shadow .2s}
+  .nav-cta:hover{opacity:.9;box-shadow:0 0 20px rgba(139,92,246,.35)}
+
+  /* ── Hero ── */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:center/cover no-repeat;z-index:0}
+  .hero .overlay{position:absolute;inset:0;background:linear-gradient(0deg,#0b0d12 0%,rgba(11,13,18,.35) 50%,rgba(11,13,18,.2) 100%);z-index:1}
+  .hero .glow{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 20% 100%,rgba(255,20,147,.18),transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(34,211,238,.12),transparent 50%)}
+  .hero-content{position:relative;z-index:2;padding:120px 0 90px;max-width:720px}
+  .hero .kicker{font-weight:600;font-size:13px;letter-spacing:.13em;text-transform:uppercase;background:linear-gradient(90deg,#ff1493,#8b5cf6,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
+  .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,5vw,56px);font-weight:700;line-height:1.06;letter-spacing:-.015em;margin-bottom:18px;color:#fff}
+  .hero p{font-size:clamp(16px,1.9vw,19px);color:#a0aec0;margin-bottom:32px;max-width:54ch}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{min-height:48px;display:inline-flex;align-items:center;padding:13px 28px;border-radius:8px;font-weight:600;font-size:15px;transition:all .2s}
+  .btn-primary{background:linear-gradient(90deg,#ff1493,#8b5cf6);color:#fff;box-shadow:0 0 0 rgba(0,0,0,0)}
+  .btn-primary:hover{box-shadow:0 0 24px rgba(255,20,147,.3),0 0 24px rgba(139,92,246,.3);transform:translateY(-1px)}
+  .btn-ghost{border:1px solid rgba(255,255,255,.15);color:#e2e8f0}
+  .btn-ghost:hover{border-color:#8b5cf6;color:#8b5cf6}
+
+  /* ── Section common ── */
+  section{padding:80px 0}
+  section.alt{background:#0f1219}
+  section h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.01em;line-height:1.15;margin-bottom:12px}
+  .section-lede{color:#a0aec0;font-size:16px;max-width:58ch;margin-bottom:32px}
+  .accent-line{width:48px;height:3px;border-radius:2px;background:linear-gradient(90deg,#ff1493,#8b5cf6);margin:0 0 24px}
+
+  /* ── Portfolio ── */
+  .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
+  .port-item{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.06);background:#0f1219;transition:border-color .2s,box-shadow .2s}
+  .port-item:hover{border-color:#8b5cf6aa;box-shadow:0 8px 30px rgba(0,0,0,.4),0 0 24px rgba(139,92,246,.22)}
+  .port-item iframe,.port-item .thumb{width:100%;aspect-ratio:16/9;border:0;display:block;object-fit:cover}
+  .port-item .info{padding:16px 18px}
+  .port-item .info h3{font-size:15px;font-weight:600;margin-bottom:4px}
+  .port-item .info p{font-size:13px;color:#a0aec0}
+
+  /* ── Gallery ── */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.gallery{grid-template-columns:1fr 1fr}}
+  .gallery a{display:block;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:transform .25s,box-shadow .25s,border-color .25s}
+  .gallery a:hover{transform:scale(1.02);border-color:#8b5cf6;box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 20px rgba(139,92,246,.3)}
+  .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+
+  /* ── Trust ── */
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+  .badge{font-size:13px;font-weight:500;padding:7px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:#a0aec0}
+  .badge.highlight{background:linear-gradient(90deg,#ff149322,#8b5cf622);border-color:#8b5cf666;color:#e2e8f0}
+  .trust-note{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px;margin-top:8px}
+  .trust-note p{color:#a0aec0;font-size:15px;max-width:60ch}
+  .trust-note p+p{margin-top:14px}
+
+  /* ── Services ── */
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .service{border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px;background:rgba(255,255,255,.01);transition:border-color .2s}
+  .service:hover{border-color:#8b5cf655}
+  .service h3{font-size:17px;font-weight:600;margin-bottom:6px}
+  .service .price{font-weight:700;font-size:16px;background:linear-gradient(90deg,#ff1493,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+  .service p{color:#a0aec0;font-size:14.5px}
+
+  /* ── Stats ── */
+  .stats{display:flex;gap:48px;flex-wrap:wrap;margin-bottom:36px}
+  .stat .num{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;background:linear-gradient(90deg,#ff1493,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.015em}
+  .stat .lbl{color:#a0aec0;font-size:13px;margin-top:2px}
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.quotes{grid-template-columns:1fr}}
+  blockquote{border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:24px;font-size:15px;color:#a0aec0;background:rgba(255,255,255,.01)}
+  blockquote footer{margin-top:12px;color:#e2e8f0;font-size:13px;font-weight:600}
+  blockquote footer span{color:#a0aec0;font-weight:400}
+
+  /* ── FAQ ── */
+  .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:700px){.faq-grid{grid-template-columns:1fr}}
+  .faq-item{border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:20px}
+  .faq-item h3{font-size:15px;font-weight:600;margin-bottom:6px}
+  .faq-item p{font-size:14px;color:#a0aec0}
+
+  /* ── Footer ── */
+  footer{padding:72px 0 48px;border-top:1px solid rgba(255,255,255,.06)}
+  .footer-logo img{height:72px;width:auto;display:block;margin-bottom:28px}
+  footer h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.01em;line-height:1.15;margin-bottom:12px;max-width:18ch}
+  .footer-links{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 36px}
+  .fineprint{color:#6b7a88;font-size:13px;border-top:1px solid rgba(255,255,255,.06);padding-top:20px}
+  .fineprint p+p{margin-top:4px}
+  .fineprint strong{color:#a0aec0;font-weight:500}
+  a[href^="mailto"]{color:#8b5cf6}
+  a[href^="mailto"]:hover{color:#22d3ee}
+</style>
+</head>
+<body><div class="slice">
+
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <img src="assets/logo-web.png" alt="Reignland Media logo">
+      <div class="brand-text">Reignland <span>Media</span></div>
+    </div>
+    <a class="nav-cta" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener">Get a quote</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg" style="background-image:url(assets/web_hero.jpg)"></div>
+  <div class="overlay"></div>
+  <div class="glow"></div>
+  <div class="wrap hero-content">
+    <p class="kicker">FPV drone tours · Sunshine Coast to Fraser Coast</p>
+    <h1>Your venue, from inside the action.</h1>
+    <p>One-take FPV fly-throughs that make viewers feel like they&rsquo;re there. Commercial drone tours, aerials and vertical video &mdash; CASA-approved, fully insured.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener">Message for a quote</a>
+      <a class="btn btn-ghost" href="#portfolio">See our work</a>
+    </div>
+  </div>
+</div>
+
+<section id="portfolio">
+  <div class="wrap">
+    <div class="accent-line"></div>
+    <h2>Featured work</h2>
+    <p class="section-lede">Real projects, real results — venue tours, property fly-throughs, construction progress and coastal aerials across the Sunshine Coast region.</p>
+    <div class="portfolio-grid">
+      <div class="port-item">
+        <iframe src="https://www.youtube.com/embed/8Pe-GUB29eQ" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <div class="info"><h3>Terella Brewing — FPV Venue Tour</h3><p>One-take brewery fly-through with DJI Avata 2</p></div>
+      </div>
+      <div class="port-item">
+        <iframe src="https://www.youtube.com/embed/HK7Ze9S3kC4" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <div class="info"><h3>138 Callistemon Court — Property Fly-through</h3><p>Full property FPV tour, Cootharaba</p></div>
+      </div>
+      <div class="port-item">
+        <iframe src="https://www.youtube.com/embed/6D-DWX2U0mY" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <div class="info"><h3>Real Estate FPV Tours</h3><p>SEQ property walkthroughs and aerials</p></div>
+      </div>
+      <div class="port-item">
+        <iframe src="https://www.youtube.com/embed/P2C3zVjFlac" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <div class="info"><h3>Developer Project — Mavic 3 Pro</h3><p>Construction progress and site aerials</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="gallery">
+  <div class="wrap">
+    <div class="accent-line"></div>
+    <h2>Portfolio gallery</h2>
+    <p class="section-lede">Aerial stills captured across Queensland venues, properties and coastlines.</p>
+    <div class="gallery">
+      <a href="https://dronesforhire.com.au/assets/uploads/2025-4/5410-v924z1ofpt.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2025-4/5410-v924z1ofpt.jpg" loading="lazy" alt="Aerial venue shot"></a>
+      <a href="https://dronesforhire.com.au/assets/uploads/2024-5/5410-v2kgqk1pjh.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2024-5/5410-v2kgqk1pjh.jpg" loading="lazy" alt="Coastal aerial"></a>
+      <a href="https://dronesforhire.com.au/assets/uploads/2023-0/5410-s7p4mol8xd.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2023-0/5410-s7p4mol8xd.jpg" loading="lazy" alt="Property aerial"></a>
+      <a href="https://dronesforhire.com.au/assets/uploads/2022-5/5410-lszldej2bm.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-5/5410-lszldej2bm.jpg" loading="lazy" alt="Event aerial"></a>
+      <a href="https://dronesforhire.com.au/assets/uploads/2022-4/5410-fv8zy5p5md.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-4/5410-fv8zy5p5md.jpg" loading="lazy" alt="Construction progress"></a>
+      <a href="https://dronesforhire.com.au/assets/uploads/2022-1/5410-qvyr9v6q3j.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-1/5410-qvyr9v6q3j.jpg" loading="lazy" alt="Sunshine Coast aerial"></a>
+      <a href="https://dronesforhire.com.au/assets/uploads/2022-0/5410-zig7azm8av.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-0/5410-zig7azm8av.jpg" loading="lazy" alt="Aerial landscape"></a>
+      <a href="https://dronesforhire.com.au/assets/uploads/2022-4/5410-lj5m0389gv.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-4/5410-lj5m0389gv.jpg" loading="lazy" alt="Real estate listing"></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="accent-line"></div>
+    <h2>CASA-approved · Fully insured</h2>
+    <p class="section-lede">Commercial FPV flying in Australia requires a CASA EVLOS approval. We hold one — so your venue, your guests and your insurance are never at risk.</p>
+    <div class="badges">
+      <span class="badge highlight">CASA ReOC operator</span>
+      <span class="badge highlight">EVLOS-approved FPV</span>
+      <span class="badge highlight">Public liability insured</span>
+      <span class="badge">SCC operating permit</span>
+      <span class="badge">Night ops approved</span>
+    </div>
+    <div class="trust-note">
+      <p><strong>Before booking any FPV operator, ask two questions:</strong></p>
+      <p style="margin-top:10px">&ldquo;Do you hold a CASA EVLOS approval for commercial FPV?&rdquo; &mdash; <strong style="color:#e2e8f0">We do.</strong></p>
+      <p>&ldquo;Are you insured for commercial FPV work?&rdquo; &mdash; <strong style="color:#e2e8f0">Yes.</strong></p>
+      <p style="margin-top:16px;color:#e2e8f0">If the answer is vague, the risk is yours. Ours is covered.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="accent-line"></div>
+    <h2>Services</h2>
+    <p class="section-lede">From one-take FPV tours to standard aerials and night operations — every job is planned around your space and your schedule.</p>
+    <div class="services">
+      <div class="service">
+        <h3>FPV drone tours</h3>
+        <div class="price">From $495</div>
+        <p>One-take fly-throughs for venues, listings and events. Indoor and outdoor — planned around your space and your busiest hour.</p>
+      </div>
+      <div class="service">
+        <h3>Standard aerials &amp; 360°</h3>
+        <div class="price">Quoted per job</div>
+        <p>Photo and video for property listings, site progress, roof inspections and commercial projects — including 360° panoramas.</p>
+      </div>
+      <div class="service">
+        <h3>Night operations</h3>
+        <div class="price">Quoted per job</div>
+        <p>ReOC-approved after-dark work — twilight listings, lit venues, events under lights. Non-standard ops available on application.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="accent-line"></div>
+    <h2>Nine years in the air</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">9 yrs</div><div class="lbl">Drone operations</div></div>
+      <div class="stat"><div class="num">300+</div><div class="lbl">Flight hours logged</div></div>
+      <div class="stat"><div class="num">5.0★</div><div class="lbl">Client rating across all jobs</div></div>
+      <div class="stat"><div class="num">7NEWS</div><div class="lbl">Footage credited on air</div></div>
+    </div>
+    <div class="quotes">
+      <blockquote>&ldquo;Extremely professional, high quality work outputs, reasonable cost, great response time and communication.&rdquo;<footer>Olivia McCubbin <span>&mdash; Niecon</span></footer></blockquote>
+      <blockquote>&ldquo;Very professional and quick turnaround — will be sending more work in the future.&rdquo;<footer>Michelle Jones <span>&mdash; Professionals Newlands Real Estate</span></footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="accent-line"></div>
+    <h2>Quick answers</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>What areas do you cover?</h3>
+        <p>Servicing From North Brisbane Suburbs, Sunshine Coast and Fraser Coast. Extended-hours council permits across the Sunshine Coast region (4:30am–10pm).</p>
+      </div>
+      <div class="faq-item">
+        <h3>How much does an FPV tour cost?</h3>
+        <p>FPV venue tours start at $495. Standard aerials quoted per job. Every project priced with no surprises.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Are you insured and licensed?</h3>
+        <p>Yes. CASA ReOC holder, EVLOS-approved for commercial FPV, public liability insured. Both questions answered.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How fast can I get the footage?</h3>
+        <p>Most projects delivered within 24 hours. Rush turnaround available.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-logo"><img src="assets/logo-web.png" alt="Reignland Media logo"></div>
+    <h2>Ready to see your place from inside the action?</h2>
+    <p class="section-lede" style="margin-bottom:0">Message us with your venue or listing and we&rsquo;ll come back with a same-day quote.</p>
+    <div class="footer-links">
+      <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener">Message on Facebook</a>
+      <a class="btn btn-ghost" href="mailto:admin_derrick@proton.me">Email us</a>
+      <a class="btn btn-ghost" href="https://dronesforhire.com.au/drone-operator/5410/reignscott%20drone%20imagery" rel="noopener">Quote via DronesForHire</a>
+    </div>
+    <div class="fineprint">
+      <p>Reignland Media (formerly Reignscott Drone Imagery Pty Ltd) &middot; Sunshine Coast, Queensland</p>
+      <p><strong>CASA ReOC &middot; EVLOS-approved FPV &middot; Public liability insured &middot; SCC permit (4:30am–10pm)</strong></p>
+    </div>
+  </div>
+</footer>
+
+</div></body>
+</html>
