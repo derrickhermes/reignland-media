@@ -14,6 +14,7 @@
     --neon-pink:#ff2e88; --neon-violet:#8b5cf6; --neon-cyan:#22d3ee;
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  html,body{max-width:100%;overflow-x:hidden}
   body{background:var(--canvas);font-family:'Inter',sans-serif;color:var(--text-primary)}
 
   .hero{position:relative;width:100%;min-height:100vh;display:flex;overflow:hidden}
@@ -58,7 +59,7 @@
   /* readout word-cycle: bolder weight, deeper neon values */
   .w0{color:#e0246e}.w1{color:#7c3aed}.w2{color:#0da8c9}
   /* sub: solid warm white — the calm line between two neon moments */
-  .sub{font-family:'JetBrains Mono',monospace;font-size:clamp(12px,0.94vw,17px);line-height:1.7;color:var(--text-primary);
+  .sub{font-family:'JetBrains Mono',monospace;font-size:clamp(14px,1.1vw,21px);line-height:1.7;color:var(--text-primary);
     margin-top:2.7vh;max-width:58ch}
   .cta-row{margin-top:4.2vh;display:flex;align-items:center;gap:2.1vw}
   /* primary CTA: presence through geometry + one neon edge, no gradient pill */
@@ -171,7 +172,8 @@
     .footer{padding:64px 22px 36px}
     .sec-head{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:40px}
     .sec-lede{max-width:100%}
-    .sec-title-svg{max-width:92vw}
+    .sec-title-svg{max-width:100%;width:100%}
+    .footer .sec-title-svg{width:100%}
     .work-grid{grid-template-columns:1fr}
     .w-feature,.w-stack,.w-wide{grid-column:span 12}
     .w-wide iframe{aspect-ratio:16/9}
@@ -213,9 +215,10 @@
 </svg>
 
 <section class="hero">
-  <video autoplay muted loop playsinline preload="metadata" disablepictureinpicture
-         poster="assets/hero-poster.jpg"
-         src="assets/hero-loop-draft.mp4"></video>
+  <video autoplay muted loop playsinline disablepictureinpicture
+         poster="assets/hero-poster.jpg">
+    <source src="assets/hero-loop-draft.mp4" type="video/mp4">
+  </video>
   <div class="scrim"></div>
 
   <div class="topbar">
@@ -451,6 +454,16 @@ document.querySelectorAll('.rainbow').forEach(el => {
     node.replaceWith(frag);
   });
 });
+
+// hero video: force muted (iOS attribute timing) + resume play on first touch
+const heroVid = document.querySelector('.hero video');
+if (heroVid) {
+  heroVid.muted = true;
+  const tryPlay = () => heroVid.play().catch(() => {});
+  tryPlay();
+  document.addEventListener('touchend', tryPlay, { once: true });
+  document.addEventListener('click', tryPlay, { once: true });
+}
 </script>
 
 </body>
