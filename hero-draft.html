@@ -85,8 +85,8 @@
   .sec-title-svg{display:block;height:auto;overflow:visible;margin-left:-4px}
   .sec-title-svg text{font-family:'Major Mono Display',monospace;font-size:64px;letter-spacing:-.01em;
     stroke:rgba(6,9,12,.5);stroke-width:1.5px;paint-order:stroke;stroke-linejoin:round}
-  .sec-lede{font-family:'JetBrains Mono',monospace;font-size:17px;line-height:1.7;
-    color:var(--text-primary);max-width:46ch;text-align:left}
+  .sec-lede{font-family:'JetBrains Mono',monospace;font-size:19px;line-height:1.7;
+    color:var(--text-primary);max-width:48ch;text-align:left}
 
   /* asymmetric grid — no identical cards in a row */
   .work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
@@ -99,7 +99,7 @@
   .w-wide iframe{aspect-ratio:21/9}
   .work-meta{display:flex;align-items:baseline;gap:14px;padding:16px 18px;
     border-top:.5px solid var(--border);font-family:'JetBrains Mono',monospace}
-  .work-meta .t{font-size:17px;color:var(--text-primary)}
+  .work-meta .t{font-size:18px;color:var(--text-primary)}
   .work-meta .loc{font-size:14px;color:var(--text-body);margin-left:auto;letter-spacing:.08em}
 
   /* stills strip — uniform 4:3 grid (even-gallery rule) */
@@ -113,7 +113,7 @@
   .svc-row{display:grid;grid-template-columns:1.1fr 1.6fr auto;gap:32px;align-items:baseline;
     padding:36px 0;border-bottom:.5px solid var(--border)}
   .svc-name{font-family:'Major Mono Display',monospace;font-size:30px;color:var(--text-primary)}
-  .svc-desc{font-family:'JetBrains Mono',monospace;font-size:16px;line-height:1.7;color:var(--text-body);max-width:52ch}
+  .svc-desc{font-family:'JetBrains Mono',monospace;font-size:18px;line-height:1.7;color:var(--text-body);max-width:52ch}
   .svc-price{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;
     letter-spacing:.1em;text-transform:uppercase;color:var(--neon-cyan);white-space:nowrap}
 
@@ -143,7 +143,7 @@
   .quotes{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-top:72px}
   blockquote{border:.5px solid var(--border);border-left:2px solid var(--neon-violet);border-radius:6px;
     padding:32px;background:var(--surface);font-family:'JetBrains Mono',monospace;
-    font-size:17px;line-height:1.75;color:var(--text-primary)}
+    font-size:18px;line-height:1.75;color:var(--text-primary)}
   blockquote footer{margin-top:20px;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--neon-cyan)}
   blockquote footer span{color:var(--text-body);text-transform:none;letter-spacing:.02em}
 
@@ -151,7 +151,7 @@
   .faq{border-top:.5px solid var(--border)}
   .faq-item{display:grid;grid-template-columns:1fr 1.4fr;gap:32px;padding:28px 0;border-bottom:.5px solid var(--border)}
   .faq-item h3{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--text-primary)}
-  .faq-item p{font-family:'JetBrains Mono',monospace;font-size:16px;line-height:1.7;color:var(--text-body)}
+  .faq-item p{font-family:'JetBrains Mono',monospace;font-size:18px;line-height:1.7;color:var(--text-body)}
 
   /* ---------- FOOTER ---------- */
   .footer{position:relative;background:var(--canvas);border-top:.5px solid var(--border);
@@ -213,7 +213,7 @@
 </svg>
 
 <section class="hero">
-  <video autoplay muted loop playsinline
+  <video autoplay muted loop playsinline preload="metadata" disablepictureinpicture
          poster="assets/hero-poster.jpg"
          src="assets/hero-loop-draft.mp4"></video>
   <div class="scrim"></div>
@@ -273,7 +273,7 @@
       </div>
       <div class="work-item">
         <iframe src="https://www.youtube.com/embed/awuMI-1ZAtE" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div class="work-meta"><span class="t">Real estate FPV tours</span><span class="loc">seq properties</span></div>
+        <div class="work-meta"><span class="t">NextDC — data centre aerials</span><span class="loc">commercial</span></div>
       </div>
     </div>
     <div class="work-item w-wide">
