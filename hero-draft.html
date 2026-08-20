@@ -216,9 +216,8 @@
 
 <section class="hero">
   <video autoplay muted loop playsinline webkit-playsinline disablepictureinpicture
-         poster="assets/hero-poster.jpg">
-    <source src="assets/hero-loop-draft.mp4" type="video/mp4">
-  </video>
+         poster="assets/hero-poster.jpg"
+         src="assets/hero-loop-draft.mp4"></video>
   <div class="scrim"></div>
 
   <div class="topbar">
@@ -455,17 +454,14 @@ document.querySelectorAll('.rainbow').forEach(el => {
   });
 });
 
-// hero video: force muted (iOS attribute timing) + resume play on first touch
+// hero video: ONLY resume on first touch — no load()/play() calls at load time
+// (calling load() after parse resets Safari's resource selection and stalls it:
+//  debug showed networkState=NETWORK_NO_SOURCE with events [waiting, loadstart])
 const heroVid = document.querySelector('.hero video');
 if (heroVid) {
-  heroVid.muted = true;
-  const tryPlay = () => heroVid.play().catch(() => {});
-  heroVid.load();
-  tryPlay();
-  heroVid.addEventListener('loadeddata', tryPlay);
-  heroVid.addEventListener('canplay', tryPlay);
-  document.addEventListener('touchend', tryPlay, { once: true });
-  document.addEventListener('click', tryPlay, { once: true });
+  const resume = () => { heroVid.muted = true; heroVid.play().catch(() => {}); };
+  document.addEventListener('touchend', resume, { once: true });
+  document.addEventListener('click', resume, { once: true });
 
   // diagnostic mode: hero-draft.html?debug=1 shows live video state
   if (location.search.includes('debug=1')) {
