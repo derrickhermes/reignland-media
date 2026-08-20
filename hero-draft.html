@@ -166,6 +166,41 @@
     font-family:'JetBrains Mono',monospace;font-size:clamp(12px,0.95vw,16px);line-height:2;color:var(--text-tertiary)}
   .fineprint b{color:var(--text-body);font-weight:400}
 
+  /* ---------- QUOTE MODAL ---------- */
+  .qmodal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;
+    background:rgba(10,14,18,.72);backdrop-filter:blur(8px);padding:20px}
+  .qmodal.open{display:flex}
+  .qbox{background:var(--surface);border:.5px solid var(--border);border-left:2px solid var(--neon-pink);
+    border-radius:6px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;padding:36px}
+  .qbox .sec-label{margin-bottom:8px}
+  .qbox h3{font-family:'Major Mono Display',monospace;font-size:28px;color:var(--text-primary);margin-bottom:8px}
+  .qbox .qsub{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text-body);
+    line-height:1.6;margin-bottom:28px}
+  .qfield{margin-bottom:18px}
+  .qfield label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--neon-cyan);margin-bottom:8px}
+  .qfield input,.qfield select,.qfield textarea{width:100%;background:var(--canvas);
+    border:.5px solid var(--border);border-radius:6px;padding:12px 14px;
+    font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text-primary);outline:none;
+    transition:border-color .2s}
+  .qfield input:focus,.qfield select:focus,.qfield textarea:focus{border-color:var(--neon-cyan)}
+  .qfield textarea{min-height:90px;resize:vertical}
+  .qrow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .qsubmit{width:100%;margin-top:8px;cursor:pointer;text-align:center;
+    font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--text-primary);padding:15px 22px;
+    border:.5px solid rgba(255,253,249,.35);border-left:2px solid var(--neon-pink);
+    background:rgba(10,14,18,.45);transition:border-color .25s}
+  .qsubmit:hover{border-color:var(--neon-pink)}
+  .qclose{position:absolute;top:18px;right:22px;background:none;border:none;cursor:pointer;
+    font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.1em;color:var(--text-body)}
+  .qclose:hover{color:var(--neon-pink)}
+  .qdone{display:none;text-align:center;padding:32px 0}
+  .qdone .big{font-family:'Major Mono Display',monospace;font-size:32px;color:var(--neon-cyan);margin-bottom:16px}
+  .qdone p{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text-body);line-height:1.7}
+  .qhoney{position:absolute;left:-9999px;opacity:0;height:0}
+  @media (max-width:900px){ .qbox{padding:28px 22px} .qrow{grid-template-columns:1fr} }
+
   /* ---------- MOBILE ---------- */
   @media (max-width:900px){
     .section{padding:64px 22px}
@@ -227,7 +262,7 @@
     <div class="topnav">
       <a class="social" href="https://www.tiktok.com/@reignland" rel="noopener">tiktok ↗</a>
       <a class="social" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener">facebook ↗</a>
-      <a class="quote-chip" href="mailto:scott@rsdi.com.au?subject=FPV%20quote%20request">request a quote</a>
+      <a class="quote-chip" href="mailto:admin_derrick@proton.me?subject=FPV%20quote%20request">request a quote</a>
     </div>
   </div>
 
@@ -240,7 +275,7 @@
     </svg>
     <p class="sub">Immersive FPV drone fly-throughs and aerial imagery for real estate, venues and commercial spaces across North Brisbane, the Sunshine Coast, Gympie, the Fraser Coast and Bundaberg. One flight. Every angle. Fully insured and EVLOS-endorsed by CASA — the legal requirement for FPV tours.</p>
     <div class="cta-row">
-      <a class="cta" href="#">message for a quote ↗</a>
+      <a class="cta" href="mailto:admin_derrick@proton.me?subject=FPV%20quote%20request">message for a quote ↗</a>
       <a class="cta2" href="#">watch the reel</a>
     </div>
   </div>
@@ -425,7 +460,7 @@
     <text x="0" y="66" fill="url(#brandGrad)">the view that sells the space.</text>
   </svg>
   <div class="footer-ctas">
-    <a class="cta" href="mailto:scott@rsdi.com.au?subject=FPV%20quote%20request">request a quote ↗</a>
+    <a class="cta" href="mailto:admin_derrick@proton.me?subject=FPV%20quote%20request">request a quote ↗</a>
     <a class="cta2" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener" style="align-self:center">message on facebook</a>
   </div>
   <div class="fineprint">
@@ -433,6 +468,55 @@
     <p><b>CASA ReOC · EVLOS-approved FPV · Public liability insured · SCC permit (4:30am–10pm)</b></p>
   </div>
 </footer>
+
+<!-- QUOTE MODAL -->
+<div class="qmodal" id="qmodal" role="dialog" aria-modal="true" aria-label="Request a quote">
+  <div class="qbox" style="position:relative">
+    <button class="qclose" type="button" id="qclose">close ✕</button>
+    <p class="sec-label">request a quote</p>
+    <h3>tell us about the job</h3>
+    <p class="qsub">A few quick details and we come back with a price — usually same day.</p>
+    <form id="qform">
+      <div class="qrow">
+        <div class="qfield"><label for="qname">your name *</label>
+          <input id="qname" name="name" required autocomplete="name"></div>
+        <div class="qfield"><label for="qphone">phone</label>
+          <input id="qphone" name="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="qfield"><label for="qemail">email *</label>
+        <input id="qemail" name="email" type="email" required autocomplete="email"></div>
+      <div class="qrow">
+        <div class="qfield"><label for="qservice">what do you need? *</label>
+          <select id="qservice" name="service" required>
+            <option value="">— select —</option>
+            <option>FPV fly-through tour</option>
+            <option>Standard aerials / photography</option>
+            <option>Night operations</option>
+            <option>Something else</option>
+          </select></div>
+        <div class="qfield"><label for="qwhen">when do you need it?</label>
+          <select id="qwhen" name="timeframe">
+            <option value="">— select —</option>
+            <option>ASAP</option>
+            <option>Within 2 weeks</option>
+            <option>Within a month</option>
+            <option>Just planning ahead</option>
+          </select></div>
+      </div>
+      <div class="qfield"><label for="qwhere">property / venue &amp; location *</label>
+        <input id="qwhere" name="location" required placeholder="e.g. restaurant, Gympie CBD"></div>
+      <div class="qfield"><label for="qmsg">anything else?</label>
+        <textarea id="qmsg" name="message" placeholder="Size of the space, what you want viewers to feel, links..."></textarea></div>
+      <input class="qhoney" type="text" name="_honey" tabindex="-1" autocomplete="off">
+      <button class="qsubmit" type="submit" id="qsend">send request ↗</button>
+    </form>
+    <div class="qdone" id="qdone">
+      <p class="big">received.</p>
+      <p>Your request is in. We'll come back with a quote — usually same day.<br>
+      Urgent? Message us on Facebook for the fastest reply.</p>
+    </div>
+  </div>
+</div>
 
 <script>
 // cycle logo palette word-by-word across .rainbow elements
@@ -488,6 +572,48 @@ if (heroVid) {
     setInterval(report, 1000);
   }
 }
+
+// ---------- QUOTE MODAL ----------
+const qmodal = document.getElementById('qmodal');
+const qform = document.getElementById('qform');
+const qdone = document.getElementById('qdone');
+// every quote CTA (topnav chip, hero CTA, footer CTA) opens the modal;
+// mailto hrefs stay as the no-JS fallback
+document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+  if (!a.href.includes('quote')) return;
+  a.addEventListener('click', e => { e.preventDefault(); qmodal.classList.add('open'); });
+});
+document.getElementById('qclose').addEventListener('click', () => qmodal.classList.remove('open'));
+qmodal.addEventListener('click', e => { if (e.target === qmodal) qmodal.classList.remove('open'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') qmodal.classList.remove('open'); });
+// ?quote=open opens the modal directly (shareable link / QA)
+if (location.search.includes('quote=open')) qmodal.classList.add('open');
+
+qform.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = document.getElementById('qsend');
+  btn.textContent = 'sending...';
+  const data = Object.fromEntries(new FormData(qform).entries());
+  data._subject = 'FPV quote request — ' + (data.name || 'website');
+  try {
+    const r = await fetch('https://formsubmit.co/ajax/admin_derrick@proton.me', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (!r.ok) throw new Error('relay ' + r.status);
+    qform.style.display = 'none';
+    qdone.style.display = 'block';
+  } catch (err) {
+    // relay failed — fall back to the visitor's own mail client with prefilled body
+    const body = encodeURIComponent(
+      'Name: ' + (data.name || '') + '\nPhone: ' + (data.phone || '') +
+      '\nEmail: ' + (data.email || '') + '\nService: ' + (data.service || '') +
+      '\nTimeframe: ' + (data.timeframe || '') + '\nLocation: ' + (data.location || '') +
+      '\n\n' + (data.message || ''));
+    location.href = 'mailto:admin_derrick@proton.me?subject=' + encodeURIComponent('FPV quote request') + '&body=' + body;
+  }
+});
 </script>
 
 </body>
