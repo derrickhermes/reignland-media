@@ -108,6 +108,63 @@
   .stills a{display:block;border:.5px solid var(--border);border-radius:6px;overflow:hidden}
   .stills img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
 
+  /* ---------- SERVICES: editorial rows, not cards ---------- */
+  .svc{border-top:.5px solid var(--border)}
+  .svc-row{display:grid;grid-template-columns:1.1fr 1.6fr auto;gap:32px;align-items:baseline;
+    padding:36px 0;border-bottom:.5px solid var(--border)}
+  .svc-name{font-family:'Major Mono Display',monospace;font-size:26px;color:var(--text-primary)}
+  .svc-desc{font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.7;color:var(--text-body);max-width:52ch}
+  .svc-price{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--neon-cyan);white-space:nowrap}
+
+  /* ---------- TRUST: the two questions ---------- */
+  .badges{display:flex;flex-wrap:wrap;gap:12px;margin:40px 0 56px}
+  .badge{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;padding:10px 16px;border:.5px solid var(--border);
+    color:var(--text-primary);background:var(--surface)}
+  .badge.hl{border-left:2px solid var(--neon-pink)}
+  .twoq{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .q{border:.5px solid var(--border);border-radius:6px;padding:32px;background:var(--surface)}
+  .q .ask{font-family:'JetBrains Mono',monospace;font-size:15px;line-height:1.6;color:var(--text-primary);margin-bottom:16px}
+  .q .ans{font-family:'Major Mono Display',monospace;font-size:28px;color:var(--neon-cyan)}
+  .q .ans.pink{color:var(--neon-pink)}
+  .trust-kicker{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text-body);margin-top:32px}
+  .trust-kicker b{color:var(--text-primary);font-weight:700}
+
+  /* ---------- STATS: big numbers, hairline columns ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:8px}
+  .stat{padding:28px 24px;border-left:.5px solid var(--border)}
+  .stat:first-child{border-left:0;padding-left:0}
+  .stat .num{font-family:'JetBrains Mono',monospace;font-size:clamp(40px,4vw,56px);font-weight:700;line-height:1}
+  .stat:nth-child(odd) .num{color:var(--neon-cyan)}
+  .stat:nth-child(even) .num{color:var(--neon-pink)}
+  .stat .lbl{font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--text-body);margin-top:12px}
+  .quotes{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-top:72px}
+  blockquote{border:.5px solid var(--border);border-left:2px solid var(--neon-violet);border-radius:6px;
+    padding:32px;background:var(--surface);font-family:'JetBrains Mono',monospace;
+    font-size:15px;line-height:1.75;color:var(--text-primary)}
+  blockquote footer{margin-top:20px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--neon-cyan)}
+  blockquote footer span{color:var(--text-body);text-transform:none;letter-spacing:.02em}
+
+  /* ---------- FAQ: hairline list ---------- */
+  .faq{border-top:.5px solid var(--border)}
+  .faq-item{display:grid;grid-template-columns:1fr 1.4fr;gap:32px;padding:28px 0;border-bottom:.5px solid var(--border)}
+  .faq-item h3{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--text-primary)}
+  .faq-item p{font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.7;color:var(--text-body)}
+
+  /* ---------- FOOTER ---------- */
+  .footer{position:relative;background:var(--canvas);border-top:.5px solid var(--border);
+    padding:108px 40px 48px;text-align:left}
+  .footer-logo img{height:96px;width:auto;display:block;margin-bottom:40px}
+  .footer-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:40px}
+  /* footer CTAs use fixed padding — the hero's vh-scaled padding is
+     viewport-height relative and explodes outside the 100vh hero */
+  .footer-ctas .cta{padding:16px 24px;font-size:13px}
+  .fineprint{margin-top:80px;padding-top:24px;border-top:.5px solid var(--border);
+    font-family:'JetBrains Mono',monospace;font-size:12px;line-height:2;color:var(--text-tertiary)}
+  .fineprint b{color:var(--text-body);font-weight:400}
+
   .telemetry{position:absolute;right:2.8vw;bottom:5.4vh;z-index:3;text-align:right;
     font-family:'JetBrains Mono',monospace;font-size:clamp(10px,0.8vw,15px);letter-spacing:.1em;color:var(--text-body);line-height:2.1}
   .telemetry b{color:var(--neon-cyan);font-weight:400}
@@ -216,6 +273,136 @@
     <a href="https://dronesforhire.com.au/assets/uploads/2022-4/5410-lj5m0389gv.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-4/5410-lj5m0389gv.jpg" loading="lazy" alt="Real estate listing"></a>
   </div>
 </section>
+
+<section class="section" id="services">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">what we do</p>
+      <svg class="sec-title-svg" width="380" height="84" viewBox="0 0 380 84" role="img" aria-label="services">
+        <text x="0" y="66" fill="url(#brandGrad)">services</text>
+      </svg>
+    </div>
+    <p class="sec-lede">From one-take FPV tours to standard aerials and night operations — every job is planned around your space and your schedule.</p>
+  </div>
+  <div class="svc">
+    <div class="svc-row">
+      <span class="svc-name">fpv drone tours</span>
+      <span class="svc-desc">One-take fly-throughs for venues, listings and events. Indoor and outdoor — planned around your space and your busiest hour.</span>
+      <span class="svc-price">from $495</span>
+    </div>
+    <div class="svc-row">
+      <span class="svc-name">standard aerials + 360°</span>
+      <span class="svc-desc">Photo and video for property listings, site progress, roof inspections and commercial projects — including 360° panoramas.</span>
+      <span class="svc-price">quoted per job</span>
+    </div>
+    <div class="svc-row">
+      <span class="svc-name">night operations</span>
+      <span class="svc-desc">ReOC-approved after-dark work — twilight listings, lit venues, events under lights. Non-standard ops available on application.</span>
+      <span class="svc-price">quoted per job</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="trust">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">trust &amp; licensing</p>
+      <svg class="sec-title-svg" width="1010" height="84" viewBox="0 0 1010 84" role="img" aria-label="licensed and insured">
+        <text x="0" y="66" fill="url(#brandGrad)">licensed + insured</text>
+      </svg>
+    </div>
+    <p class="sec-lede">Commercial FPV flying in Australia requires a CASA EVLOS approval. We hold one — so your venue, your guests and your insurance are never at risk.</p>
+  </div>
+  <div class="badges">
+    <span class="badge hl">CASA ReOC operator</span>
+    <span class="badge hl">EVLOS-approved FPV</span>
+    <span class="badge hl">Public liability insured</span>
+    <span class="badge">SCC operating permit</span>
+    <span class="badge">Night ops approved</span>
+  </div>
+  <div class="twoq">
+    <div class="q">
+      <p class="ask">"Do you hold a CASA EVLOS approval for commercial FPV?"</p>
+      <p class="ans">we do.</p>
+    </div>
+    <div class="q">
+      <p class="ask">"Are you insured for commercial FPV work?"</p>
+      <p class="ans pink">yes.</p>
+    </div>
+  </div>
+  <p class="trust-kicker">Before booking any FPV operator, ask those two questions. <b>If the answer is vague, the risk is yours. Ours is covered.</b></p>
+</section>
+
+<section class="section" id="numbers">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">by the numbers</p>
+      <svg class="sec-title-svg" width="1000" height="84" viewBox="0 0 1000 84" role="img" aria-label="nine years in the air">
+        <text x="0" y="66" fill="url(#brandGrad)">nine years in the air</text>
+      </svg>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="num">9 yrs</div><div class="lbl">Drone operations</div></div>
+    <div class="stat"><div class="num">300+</div><div class="lbl">Flight hours logged</div></div>
+    <div class="stat"><div class="num">5.0★</div><div class="lbl">Client rating, all jobs</div></div>
+    <div class="stat"><div class="num">7NEWS</div><div class="lbl">Footage credited on air</div></div>
+  </div>
+  <div class="quotes">
+    <blockquote>&ldquo;Extremely professional, high quality work outputs, reasonable cost, great response time and communication.&rdquo;
+      <footer>Olivia McCubbin <span>&mdash; Niecon</span></footer>
+    </blockquote>
+    <blockquote>&ldquo;Very professional and quick turnaround — will be sending more work in the future.&rdquo;
+      <footer>Michelle Jones <span>&mdash; Professionals Newlands Real Estate</span></footer>
+    </blockquote>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">faq</p>
+      <svg class="sec-title-svg" width="620" height="84" viewBox="0 0 620 84" role="img" aria-label="quick answers">
+        <text x="0" y="66" fill="url(#brandGrad)">quick answers</text>
+      </svg>
+    </div>
+  </div>
+  <div class="faq">
+    <div class="faq-item">
+      <h3>What areas do you cover?</h3>
+      <p>North Brisbane, the Sunshine Coast, Gympie, the Fraser Coast and Bundaberg. Extended-hours council permits across the Sunshine Coast region (4:30am–10pm).</p>
+    </div>
+    <div class="faq-item">
+      <h3>How much does an FPV tour cost?</h3>
+      <p>FPV venue tours start at $495. Standard aerials quoted per job. Every project priced with no surprises.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Are you insured and licensed?</h3>
+      <p>Yes. CASA ReOC holder, EVLOS-approved for commercial FPV, public liability insured. Both questions answered.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How fast can I get the footage?</h3>
+      <p>Most projects delivered within 24 hours. Rush turnaround available.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo"><img src="assets/logo-web.png" alt="Reignland Media"></div>
+  <p class="sec-label">get in touch</p>
+  <svg class="sec-title-svg" width="1240" height="150" viewBox="0 0 1240 150" role="img" aria-label="ready to see your place from inside the action?">
+    <text x="0" y="58" fill="url(#brandGrad)" style="font-size:52px">ready to see your place</text>
+    <text x="0" y="126" fill="url(#brandGrad)" style="font-size:52px">from inside the action?</text>
+  </svg>
+  <div class="footer-ctas">
+    <a class="cta" href="mailto:scott@rsdi.com.au?subject=FPV%20quote%20request">request a quote ↗</a>
+    <a class="cta2" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener" style="align-self:center">message on facebook</a>
+  </div>
+  <div class="fineprint">
+    <p>Reignland Media (formerly Reignscott Drone Imagery Pty Ltd) · Queensland, Australia</p>
+    <p><b>CASA ReOC · EVLOS-approved FPV · Public liability insured · SCC permit (4:30am–10pm)</b></p>
+  </div>
+</footer>
 
 <script>
 // cycle logo palette word-by-word across .rainbow elements
