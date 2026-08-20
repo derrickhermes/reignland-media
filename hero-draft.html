@@ -215,7 +215,7 @@
 </svg>
 
 <section class="hero">
-  <video autoplay muted loop playsinline disablepictureinpicture
+  <video autoplay muted loop playsinline webkit-playsinline disablepictureinpicture
          poster="assets/hero-poster.jpg">
     <source src="assets/hero-loop-draft.mp4" type="video/mp4">
   </video>
@@ -460,9 +460,37 @@ const heroVid = document.querySelector('.hero video');
 if (heroVid) {
   heroVid.muted = true;
   const tryPlay = () => heroVid.play().catch(() => {});
+  heroVid.load();
   tryPlay();
+  heroVid.addEventListener('loadeddata', tryPlay);
+  heroVid.addEventListener('canplay', tryPlay);
   document.addEventListener('touchend', tryPlay, { once: true });
   document.addEventListener('click', tryPlay, { once: true });
+
+  // diagnostic mode: hero-draft.html?debug=1 shows live video state
+  if (location.search.includes('debug=1')) {
+    const box = document.createElement('pre');
+    box.style.cssText = 'position:fixed;top:70px;left:8px;z-index:99;background:#000;color:#0f0;' +
+      'font:11px monospace;padding:8px;max-width:94vw;white-space:pre-wrap;border:1px solid #0f0';
+    document.body.appendChild(box);
+    const events = [];
+    ['loadstart','loadedmetadata','loadeddata','canplay','playing','pause','stalled','suspend','error','waiting']
+      .forEach(ev => heroVid.addEventListener(ev, () => events.push(ev)));
+    const rs = ['HAVE_NOTHING','HAVE_METADATA','HAVE_CURRENT_DATA','HAVE_FUTURE_DATA','HAVE_ENOUGH_DATA'];
+    const ns = ['NETWORK_EMPTY','NETWORK_IDLE','NETWORK_LOADING','NETWORK_NO_SOURCE'];
+    const report = () => {
+      box.textContent =
+        'paused=' + heroVid.paused + ' muted=' + heroVid.muted +
+        ' readyState=' + rs[heroVid.readyState] + ' networkState=' + ns[heroVid.networkState] +
+        '\nerror=' + (heroVid.error ? heroVid.error.code + ' ' + heroVid.error.message : 'none') +
+        '\ncurrentSrc=' + (heroVid.currentSrc || 'NONE') +
+        '\ntime=' + heroVid.currentTime.toFixed(2) + ' duration=' + (heroVid.duration || 'NaN') +
+        '\nevents: ' + events.join(',') +
+        '\nua: ' + navigator.userAgent.slice(0, 80);
+    };
+    report();
+    setInterval(report, 1000);
+  }
 }
 </script>
 
