@@ -54,8 +54,11 @@
   /* gradient headline rendered as SVG text — background-clip:text is unreliable
      in software-rendered/headless contexts; SVG fill never fails */
   .h1svg{display:block;width:82vw;height:auto;margin-left:-0.4vw;overflow:visible}
+  .h1svg-m{display:none;width:92vw;height:auto;margin-left:-2px;overflow:visible}
   .h1svg text{font-family:'Major Mono Display',monospace;font-size:44px;letter-spacing:-.01em;
     stroke:rgba(6,9,12,.65);stroke-width:1.5px;paint-order:stroke;stroke-linejoin:round}
+  .h1svg-m text{font-family:'Major Mono Display',monospace;font-size:80px;letter-spacing:-.01em;
+    stroke:rgba(6,9,12,.65);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}
   /* readout word-cycle: bolder weight, deeper neon values */
   .w0{color:#e0246e}.w1{color:#7c3aed}.w2{color:#0da8c9}
   /* sub: solid warm white — the calm line between two neon moments */
@@ -221,6 +224,8 @@
     .quotes{grid-template-columns:1fr}
     .faq-item{grid-template-columns:1fr;gap:10px}
     .telemetry{display:none}
+    .h1svg{display:none}
+    .h1svg-m{display:block}
     .block{max-width:92vw;bottom:4vh}
     .topnav .social{display:none}
     .brand img{height:72px}
@@ -272,6 +277,10 @@
     <svg class="h1svg" viewBox="0 0 1180 130" role="img" aria-label="the whole property. one flight.">
       <text x="0" y="55" fill="#fffdf9">the whole property.</text>
       <text x="0" y="110" fill="#fffdf9">one flight.</text>
+    </svg>
+    <svg class="h1svg-m" viewBox="0 0 1180 200" role="img" aria-hidden="true">
+      <text x="0" y="78" fill="#fffdf9">the whole property.</text>
+      <text x="0" y="168" fill="#fffdf9">one flight.</text>
     </svg>
     <p class="sub">Immersive FPV drone fly-throughs and aerial imagery for real estate, venues and commercial spaces across North Brisbane, the Sunshine Coast, Gympie, the Fraser Coast and Bundaberg. One flight. Every angle. Fully insured and EVLOS-endorsed by CASA — the legal requirement for FPV tours.</p>
     <div class="cta-row">
