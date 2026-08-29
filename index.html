@@ -96,15 +96,17 @@
   .work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
   .work-item{position:relative;border:.5px solid var(--border);border-radius:6px;
     overflow:hidden;background:var(--surface)}
-  .work-item iframe,.work-item img{width:100%;aspect-ratio:16/9;border:0;display:block;object-fit:cover}
+  .work-item iframe,.work-item img,.work-item video{width:100%;aspect-ratio:16/9;border:0;display:block;object-fit:cover;background:#000}
   .w-feature{grid-column:span 7}
   .w-stack{grid-column:span 5;display:grid;gap:24px}
   .w-wide{grid-column:span 12}
-  .w-wide iframe{aspect-ratio:21/9}
+  .w-wide iframe,.w-wide video{aspect-ratio:21/9}
   .work-meta{display:flex;align-items:baseline;gap:14px;padding:16px 18px;
     border-top:.5px solid var(--border);font-family:'JetBrains Mono',monospace}
   .work-meta .t{font-size:clamp(16px,1.25vw,24px);color:var(--text-primary)}
   .work-meta .loc{font-size:clamp(13px,1vw,18px);color:var(--text-body);margin-left:auto;letter-spacing:.08em}
+  .work-meta a{color:var(--text-body);text-decoration:none;border-bottom:.5px solid var(--border)}
+  .work-meta a:hover{color:var(--text-primary)}
 
   /* stills strip — uniform 4:3 grid (even-gallery rule) */
   .stills-head{margin-top:88px}
@@ -214,7 +216,7 @@
     .footer .sec-title-svg{width:100%}
     .work-grid{grid-template-columns:1fr}
     .w-feature,.w-stack,.w-wide{grid-column:span 12}
-    .w-wide iframe{aspect-ratio:16/9}
+    .w-wide iframe,.w-wide video{aspect-ratio:16/9}
     .stills{grid-template-columns:repeat(2,1fr)}
     .svc-row{grid-template-columns:1fr;gap:12px;padding:28px 0}
     .twoq{grid-template-columns:1fr}
@@ -309,22 +311,22 @@
 
   <div class="work-grid">
     <div class="work-item w-feature">
-      <iframe src="https://www.youtube-nocookie.com/embed/8Pe-GUB29eQ" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-      <div class="work-meta"><span class="t">Terella Brewing — FPV venue tour</span><span class="loc">brewery · qld</span></div>
+      <video controls preload="metadata" playsinline poster="assets/reel-terella.jpg" src="assets/reel-terella.mp4"></video>
+      <div class="work-meta"><span class="t">Terella Brewing — FPV venue tour</span><span class="loc">brewery · qld · <a href="https://youtu.be/8Pe-GUB29eQ" target="_blank" rel="noopener">youtube ↗</a></span></div>
     </div>
     <div class="w-stack">
       <div class="work-item">
-        <iframe src="https://www.youtube-nocookie.com/embed/HK7Ze9S3kC4" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div class="work-meta"><span class="t">138 Callistemon Court — property fly-through</span><span class="loc">cootharaba</span></div>
+        <video controls preload="metadata" playsinline poster="assets/reel-callistemon.jpg" src="assets/reel-callistemon.mp4"></video>
+        <div class="work-meta"><span class="t">138 Callistemon Court — property fly-through</span><span class="loc">cootharaba · <a href="https://youtu.be/HK7Ze9S3kC4" target="_blank" rel="noopener">youtube ↗</a></span></div>
       </div>
       <div class="work-item">
-        <iframe src="https://www.youtube-nocookie.com/embed/awuMI-1ZAtE" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div class="work-meta"><span class="t">NextDC — data centre aerials</span><span class="loc">commercial</span></div>
+        <video controls preload="metadata" playsinline poster="assets/reel-nextdc.jpg" src="assets/reel-nextdc.mp4"></video>
+        <div class="work-meta"><span class="t">NextDC — data centre aerials</span><span class="loc">commercial · <a href="https://youtu.be/awuMI-1ZAtE" target="_blank" rel="noopener">youtube ↗</a></span></div>
       </div>
     </div>
     <div class="work-item w-wide">
-      <iframe src="https://www.youtube-nocookie.com/embed/P2C3zVjFlac" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-      <div class="work-meta"><span class="t">Developer project — construction progress + site aerials</span><span class="loc">construction</span></div>
+      <video controls preload="metadata" playsinline poster="assets/reel-developer.jpg" src="assets/reel-developer.mp4"></video>
+      <div class="work-meta"><span class="t">Developer project — construction progress + site aerials</span><span class="loc">construction · <a href="https://youtu.be/P2C3zVjFlac" target="_blank" rel="noopener">youtube ↗</a></span></div>
     </div>
   </div>
 
