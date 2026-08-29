@@ -1,290 +1,629 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reignland Media — FPV Drone Tours & Aerial Media | Sunshine Coast</title>
-<meta name="description" content="Cinematic FPV drone fly-throughs, aerial photography and video. CASA EVLOS-approved and fully insured. Servicing from North Brisbane Suburbs, Sunshine Coast and Fraser Coast. FPV tours from $495.">
+<title>Reignland Media — Cinematic FPV Drone Tours | Sunshine Coast to Bundaberg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400&display=swap" rel="stylesheet">
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:#0b0d12;color:#e2e8f0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;text-wrap:pretty}
-  img{max-width:100%;display:block}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  :root{
+    --canvas:#0a0e12; --text-primary:#fffdf9; --text-body:#8892a8; --text-tertiary:#5a6172;
+    --border:#2a2d38;
+    --neon-pink:#ff2e88; --neon-violet:#8b5cf6; --neon-cyan:#22d3ee;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{max-width:100%;overflow-x:hidden}
+  body{background:var(--canvas);font-family:'Inter',sans-serif;color:var(--text-primary)}
 
-  /* ── Nav ── */
-  nav{position:sticky;top:0;z-index:20;background:rgba(11,13,18,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .brand{display:flex;align-items:center;gap:10px}
-  .brand img{height:32px;width:auto;display:block}
-  .brand-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#e2e8f0}
-  .brand-text span{color:#ff2d78}
-  .nav-cta{background:linear-gradient(90deg,#ff1493,#8b5cf6);color:#fff;font-weight:600;padding:10px 22px;border-radius:8px;font-size:14px;min-height:44px;display:inline-flex;align-items:center;border:1px solid transparent;transition:border-color .2s,opacity .2s}
-  .nav-cta:hover{opacity:.92;border-color:rgba(255,255,255,.25)}
+  .hero{position:relative;width:100%;min-height:100vh;display:flex;overflow:hidden}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  /* legibility scrim — deeper behind the text block so thin mono strokes
+     survive bright footage moments; footage stays visible right/top */
+  .scrim{position:absolute;inset:0;background:
+    linear-gradient(35deg, rgba(10,14,18,.97) 0%, rgba(10,14,18,.85) 32%, rgba(10,14,18,.45) 55%, rgba(10,14,18,0) 72%),
+    linear-gradient(0deg, rgba(10,14,18,.7) 0%, rgba(10,14,18,0) 38%)}
 
-  /* ── Hero ── */
-  .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
-  .hero-bg{position:absolute;inset:0;background:center/cover no-repeat;z-index:0}
-  .hero .overlay{position:absolute;inset:0;background:linear-gradient(0deg,#0b0d12 0%,rgba(11,13,18,.35) 50%,rgba(11,13,18,.2) 100%);z-index:1}
-  .hero .glow{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 20% 100%,rgba(255,20,147,.18),transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(34,211,238,.12),transparent 50%)}
-  .hero-content{position:relative;z-index:2;padding:120px 0 90px;max-width:720px}
-  .hero .kicker{font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#8892a8;margin-bottom:14px}
-  .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,5vw,56px);font-weight:700;line-height:1.06;letter-spacing:-.022em;margin-bottom:18px;color:#fff}
-  .hero p{font-size:clamp(16px,1.9vw,19px);color:#a0aec0;margin-bottom:32px;max-width:54ch}
-  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
-  .btn{min-height:48px;display:inline-flex;align-items:center;padding:13px 28px;border-radius:8px;font-weight:600;font-size:15px;transition:all .2s}
-  .btn-primary{background:linear-gradient(90deg,#ff1493,#8b5cf6);color:#fff;box-shadow:0 0 0 rgba(0,0,0,0)}
-  .btn-primary:hover{box-shadow:0 0 24px rgba(255,20,147,.3),0 0 24px rgba(139,92,246,.3);transform:translateY(-1px)}
-  .btn-ghost{border:1px solid rgba(255,255,255,.15);color:#e2e8f0}
-  .btn-ghost:hover{border-color:#8b5cf6;color:#8b5cf6}
+  /* top bar — instrument strip, not a "navbar" */
+  .topbar{position:absolute;top:0;left:0;right:0;z-index:3;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:2.7vh 2.8vw;border-bottom:.5px solid rgba(255,253,249,.14)}
+  .brand img{height:13.6vh;width:auto;display:block}
+  .topnav{font-family:'JetBrains Mono',monospace;font-size:clamp(11px,0.8vw,15px);letter-spacing:.12em;display:flex;gap:1.2vw;align-items:center}
+  .social{color:var(--text-body);text-decoration:none;text-transform:uppercase;
+    padding:1.1vh 1vw;border:.5px solid rgba(255,253,249,.2);background:rgba(10,14,18,.35);backdrop-filter:blur(6px);
+    transition:color .25s cubic-bezier(.22,1,.36,1),border-color .25s cubic-bezier(.22,1,.36,1)}
+  .social:hover{color:var(--text-primary);border-color:rgba(255,253,249,.5)}
+  .quote-chip{color:var(--text-primary);text-decoration:none;text-transform:uppercase;
+    padding:1.1vh 1.1vw;border:.5px solid rgba(255,253,249,.35);border-left:2px solid var(--neon-pink);
+    background:rgba(10,14,18,.45);backdrop-filter:blur(6px);
+    transition:border-color .25s cubic-bezier(.22,1,.36,1)}
+  .quote-chip:hover{border-color:var(--neon-pink)}
 
-  /* ── Section common ── */
-  section{padding:80px 0}
-  section.alt{background:#0f1219}
-  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8b5cf6;margin-bottom:12px}
-  section h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
-  .section-lede{color:#a0aec0;font-size:16px;max-width:58ch;margin-bottom:32px}
+  /* hero block — bottom-left anchored, type does the work
+     ALL sizes proportional to viewport so the approved 1440x810
+     composition is preserved at every screen size */
+  .block{position:absolute;left:2.8vw;bottom:5.4vh;z-index:3;max-width:70vw}
+  .readout{font-family:'JetBrains Mono',monospace;font-size:clamp(13px,0.97vw,19px);font-weight:700;letter-spacing:.14em;
+    color:var(--text-primary);text-transform:uppercase;margin-bottom:2.2vh}
+  .readout .lead{color:#0da8c9}
+  h1{font-family:'Major Mono Display',monospace;font-weight:400;
+    font-size:88px;line-height:1.02;letter-spacing:-.01em;color:var(--text-primary)}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  /* gradient headline rendered as SVG text — background-clip:text is unreliable
+     in software-rendered/headless contexts; SVG fill never fails */
+  .h1svg{display:block;width:82vw;height:auto;margin-left:-0.4vw;overflow:visible}
+  .h1svg-m{display:none;width:92vw;height:auto;margin-left:-2px;overflow:visible}
+  .h1svg text{font-family:'Major Mono Display',monospace;font-size:44px;letter-spacing:-.01em;
+    stroke:rgba(6,9,12,.65);stroke-width:1.5px;paint-order:stroke;stroke-linejoin:round}
+  .h1svg-m text{font-family:'Major Mono Display',monospace;font-size:80px;letter-spacing:-.01em;
+    stroke:rgba(6,9,12,.65);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}
+  /* readout word-cycle: bolder weight, deeper neon values */
+  .w0{color:#e0246e}.w1{color:#7c3aed}.w2{color:#0da8c9}
+  /* sub: solid warm white — the calm line between two neon moments */
+  .sub{font-family:'JetBrains Mono',monospace;font-size:clamp(14px,1.1vw,21px);line-height:1.7;color:var(--text-primary);
+    margin-top:2.7vh;max-width:58ch}
+  .cta-row{margin-top:4.2vh;display:flex;align-items:center;gap:2.1vw}
+  /* primary CTA: presence through geometry + one neon edge, no gradient pill */
+  .cta{font-family:'JetBrains Mono',monospace;font-size:clamp(11px,0.87vw,16px);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--text-primary);text-decoration:none;padding:1.7vh 1.6vw;
+    border:.5px solid rgba(255,253,249,.35);border-left:2px solid var(--neon-pink);
+    background:rgba(10,14,18,.45);backdrop-filter:blur(6px);
+    transition:border-color .25s cubic-bezier(.22,1,.36,1)}
+  .cta:hover{border-color:var(--neon-pink)}
+  .cta2{font-family:'JetBrains Mono',monospace;font-size:clamp(11px,0.87vw,16px);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--text-body);text-decoration:none;border-bottom:.5px solid var(--border);padding-bottom:6px}
 
-  /* ── Portfolio ── */
-  .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
-  .port-item{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.06);background:#0f1219;transition:border-color .2s,box-shadow .2s}
-  .port-item:hover{border-color:#8b5cf6aa}
-  .port-item iframe,.port-item .thumb{width:100%;aspect-ratio:16/9;border:0;display:block;object-fit:cover}
-  .port-item .info{padding:16px 18px}
-  .port-item .info h3{font-size:15px;font-weight:600;margin-bottom:4px}
-  .port-item .info p{font-size:13px;color:#a0aec0}
+  /* telemetry corner — flight-deck signature */
+  /* ---------- SECTION: flight log (portfolio) ---------- */
+  .section{position:relative;background:var(--canvas);border-top:.5px solid var(--border);
+    padding:108px 40px}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+    margin-bottom:56px;flex-wrap:wrap}
+  .sec-label{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--neon-cyan);margin-bottom:14px}
+  .sec-title{font-family:'Major Mono Display',monospace;font-weight:400;
+    font-size:clamp(40px,4.5vw,64px);line-height:1.02;color:var(--text-primary)}
+  /* gradient section titles via SVG (same technique as hero headline) */
+  .sec-title-svg{display:block;height:auto;overflow:visible;margin-left:-4px;max-width:100%}
+  .sec-title-svg text{font-family:'Major Mono Display',monospace;font-size:64px;letter-spacing:-.01em;
+    stroke:rgba(6,9,12,.5);stroke-width:1.5px;paint-order:stroke;stroke-linejoin:round}
+  .sec-lede{font-family:'JetBrains Mono',monospace;font-size:clamp(16px,1.35vw,26px);line-height:1.7;
+    color:var(--text-primary);max-width:48ch;text-align:left}
 
-  /* ── Gallery ── */
-  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:520px){.gallery{grid-template-columns:1fr 1fr}}
-  .gallery a{display:block;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:border-color .2s}
-  .gallery a:hover{border-color:#8b5cf6}
-  .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+  /* asymmetric grid — no identical cards in a row */
+  .work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .work-item{position:relative;border:.5px solid var(--border);border-radius:6px;
+    overflow:hidden;background:var(--surface)}
+  .work-item iframe,.work-item img{width:100%;aspect-ratio:16/9;border:0;display:block;object-fit:cover}
+  .w-feature{grid-column:span 7}
+  .w-stack{grid-column:span 5;display:grid;gap:24px}
+  .w-wide{grid-column:span 12}
+  .w-wide iframe{aspect-ratio:21/9}
+  .work-meta{display:flex;align-items:baseline;gap:14px;padding:16px 18px;
+    border-top:.5px solid var(--border);font-family:'JetBrains Mono',monospace}
+  .work-meta .t{font-size:clamp(16px,1.25vw,24px);color:var(--text-primary)}
+  .work-meta .loc{font-size:clamp(13px,1vw,18px);color:var(--text-body);margin-left:auto;letter-spacing:.08em}
 
-  /* ── Trust ── */
-  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
-  .badge{font-size:13px;font-weight:500;padding:7px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:#a0aec0}
-  .badge.highlight{background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.4);color:#e2e8f0}
-  .trust-note{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px;margin-top:8px}
-  .trust-note p{color:#a0aec0;font-size:15px;max-width:60ch}
-  .trust-note p+p{margin-top:14px}
+  /* stills strip — uniform 4:3 grid (even-gallery rule) */
+  .stills-head{margin-top:88px}
+  .stills{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+  .stills a{display:block;border:.5px solid var(--border);border-radius:6px;overflow:hidden}
+  .stills img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
 
-  /* ── Services ── */
-  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
-  .service{border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px;background:rgba(255,255,255,.01);transition:border-color .2s}
-  .service:hover{border-color:#8b5cf655}
-  .service h3{font-size:17px;font-weight:600;margin-bottom:6px}
-  .service .price{font-weight:700;font-size:16px;color:#ff2d78;margin-bottom:8px}
-  .service p{color:#a0aec0;font-size:14.5px}
+  /* ---------- SERVICES: editorial rows, not cards ---------- */
+  .svc{border-top:.5px solid var(--border)}
+  .svc-row{display:grid;grid-template-columns:1.1fr 1.6fr auto;gap:32px;align-items:baseline;
+    padding:36px 0;border-bottom:.5px solid var(--border)}
+  .svc-name{font-family:'Major Mono Display',monospace;font-size:clamp(24px,2.1vw,40px);color:var(--text-primary)}
+  .svc-desc{font-family:'JetBrains Mono',monospace;font-size:clamp(15px,1.25vw,24px);line-height:1.7;color:var(--text-body);max-width:52ch}
+  .svc-price{font-family:'JetBrains Mono',monospace;font-size:clamp(14px,1.1vw,20px);font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--neon-cyan);white-space:nowrap}
 
-  /* ── Stats ── */
-  .stats{display:flex;gap:48px;flex-wrap:wrap;margin-bottom:36px}
-  .stat .num{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;background:linear-gradient(90deg,#ff1493,#8b5cf6,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em}
-  .stat .lbl{color:#a0aec0;font-size:13px;margin-top:2px}
-  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.quotes{grid-template-columns:1fr}}
-  blockquote{border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:24px;font-size:15px;color:#a0aec0;background:rgba(255,255,255,.01)}
-  blockquote footer{margin-top:12px;color:#e2e8f0;font-size:13px;font-weight:600}
-  blockquote footer span{color:#a0aec0;font-weight:400}
+  /* ---------- TRUST: the two questions ---------- */
+  .badges{display:flex;flex-wrap:wrap;gap:12px;margin:40px 0 56px}
+  .badge{font-family:'JetBrains Mono',monospace;font-size:clamp(13px,1vw,18px);font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;padding:12px 18px;border:.5px solid var(--border);
+    color:var(--text-primary);background:var(--surface)}
+  .badge.hl{border-left:2px solid var(--neon-pink)}
+  .twoq{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .q{border:.5px solid var(--border);border-radius:6px;padding:32px;background:var(--surface)}
+  .q .ask{font-family:'JetBrains Mono',monospace;font-size:clamp(15px,1.2vw,22px);line-height:1.6;color:var(--text-primary);margin-bottom:16px}
+  .q .ans{font-family:'Major Mono Display',monospace;font-size:clamp(28px,2.4vw,44px);color:var(--neon-cyan)}
+  .q .ans.pink{color:var(--neon-pink)}
+  .trust-kicker{font-family:'JetBrains Mono',monospace;font-size:clamp(14px,1.15vw,21px);color:var(--text-body);margin-top:32px}
+  .trust-kicker b{color:var(--text-primary);font-weight:700}
 
-  /* ── FAQ ── */
-  .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media(max-width:700px){.faq-grid{grid-template-columns:1fr}}
-  .faq-item{border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:20px}
-  .faq-item h3{font-size:15px;font-weight:600;margin-bottom:6px}
-  .faq-item p{font-size:14px;color:#a0aec0}
+  /* ---------- STATS: big numbers, hairline columns ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:8px}
+  .stat{padding:28px 24px;border-left:.5px solid var(--border)}
+  .stat:first-child{border-left:0;padding-left:0}
+  .stat .num{font-family:'JetBrains Mono',monospace;font-size:clamp(40px,4vw,56px);font-weight:700;line-height:1}
+  .stat:nth-child(odd) .num{color:var(--neon-cyan)}
+  .stat:nth-child(even) .num{color:var(--neon-pink)}
+  .stat .lbl{font-family:'JetBrains Mono',monospace;font-size:clamp(12px,1vw,18px);letter-spacing:.1em;
+    text-transform:uppercase;color:var(--text-body);margin-top:12px}
+  .quotes{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-top:72px}
+  blockquote{border:.5px solid var(--border);border-left:2px solid var(--neon-violet);border-radius:6px;
+    padding:32px;background:var(--surface);font-family:'JetBrains Mono',monospace;
+    font-size:clamp(15px,1.25vw,23px);line-height:1.75;color:var(--text-primary)}
+  blockquote footer{margin-top:20px;font-size:clamp(13px,1vw,18px);letter-spacing:.1em;text-transform:uppercase;color:var(--neon-cyan)}
+  blockquote footer span{color:var(--text-body);text-transform:none;letter-spacing:.02em}
 
-  /* ── Footer ── */
-  footer{padding:72px 0 48px;border-top:1px solid rgba(255,255,255,.06)}
-  .footer-logo img{height:72px;width:auto;display:block;margin-bottom:28px}
-  footer h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px;max-width:18ch}
-  .footer-links{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 36px}
-  .fineprint{color:#6b7a88;font-size:13px;border-top:1px solid rgba(255,255,255,.06);padding-top:20px}
-  .fineprint p+p{margin-top:4px}
-  .fineprint strong{color:#a0aec0;font-weight:500}
-  a[href^="mailto"]{color:#8b5cf6}
-  a[href^="mailto"]:hover{color:#22d3ee}
+  /* ---------- FAQ: hairline list ---------- */
+  .faq{border-top:.5px solid var(--border)}
+  .faq-item{display:grid;grid-template-columns:1fr 1.4fr;gap:32px;padding:28px 0;border-bottom:.5px solid var(--border)}
+  .faq-item h3{font-family:'JetBrains Mono',monospace;font-size:clamp(16px,1.3vw,24px);font-weight:700;color:var(--text-primary)}
+  .faq-item p{font-family:'JetBrains Mono',monospace;font-size:clamp(15px,1.25vw,23px);line-height:1.7;color:var(--text-body)}
+
+  /* ---------- FOOTER ---------- */
+  .footer{position:relative;background:var(--canvas);border-top:.5px solid var(--border);
+    padding:108px 40px 48px;text-align:left}
+  .footer-logo img{height:96px;width:auto;display:block;margin-bottom:40px}
+  .footer-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:40px}
+  /* footer CTAs use fixed padding — the hero's vh-scaled padding is
+     viewport-height relative and explodes outside the 100vh hero */
+  .footer-ctas .cta{padding:16px 24px;font-size:clamp(14px,1.05vw,19px)}
+  .fineprint{margin-top:80px;padding-top:24px;border-top:.5px solid var(--border);
+    font-family:'JetBrains Mono',monospace;font-size:clamp(12px,0.95vw,16px);line-height:2;color:var(--text-tertiary)}
+  .fineprint b{color:var(--text-body);font-weight:400}
+
+  /* ---------- QUOTE MODAL ---------- */
+  .qmodal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;
+    background:rgba(10,14,18,.72);backdrop-filter:blur(8px);padding:20px}
+  .qmodal.open{display:flex}
+  .qbox{background:var(--surface);border:.5px solid var(--border);border-left:2px solid var(--neon-pink);
+    border-radius:6px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;padding:36px}
+  .qbox .sec-label{margin-bottom:8px}
+  .qbox h3{font-family:'Major Mono Display',monospace;font-size:28px;color:var(--text-primary);margin-bottom:8px}
+  .qbox .qsub{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text-body);
+    line-height:1.6;margin-bottom:28px}
+  .qfield{margin-bottom:18px}
+  .qfield label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--neon-cyan);margin-bottom:8px}
+  .qfield input,.qfield select,.qfield textarea{width:100%;background:var(--canvas);
+    border:.5px solid var(--border);border-radius:6px;padding:12px 14px;
+    font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text-primary);outline:none;
+    transition:border-color .2s}
+  .qfield input:focus,.qfield select:focus,.qfield textarea:focus{border-color:var(--neon-cyan)}
+  .qfield textarea{min-height:90px;resize:vertical}
+  .qrow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .qsubmit{width:100%;margin-top:8px;cursor:pointer;text-align:center;
+    font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--text-primary);padding:15px 22px;
+    border:.5px solid rgba(255,253,249,.35);border-left:2px solid var(--neon-pink);
+    background:rgba(10,14,18,.45);transition:border-color .25s}
+  .qsubmit:hover{border-color:var(--neon-pink)}
+  .qclose{position:absolute;top:18px;right:22px;background:none;border:none;cursor:pointer;
+    font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.1em;color:var(--text-body)}
+  .qclose:hover{color:var(--neon-pink)}
+  .qdone{display:none;text-align:center;padding:32px 0}
+  .qdone .big{font-family:'Major Mono Display',monospace;font-size:32px;color:var(--neon-cyan);margin-bottom:16px}
+  .qdone p{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--text-body);line-height:1.7}
+  .qhoney{position:absolute;left:-9999px;opacity:0;height:0}
+  @media (max-width:900px){ .qbox{padding:28px 22px} .qrow{grid-template-columns:1fr} }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width:900px){
+    .section{padding:64px 22px}
+    .footer{padding:64px 22px 36px}
+    .sec-head{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:40px}
+    .sec-lede{max-width:100%}
+    .sec-title-svg{max-width:100%;width:100%}
+    .footer .sec-title-svg{width:100%}
+    .work-grid{grid-template-columns:1fr}
+    .w-feature,.w-stack,.w-wide{grid-column:span 12}
+    .w-wide iframe{aspect-ratio:16/9}
+    .stills{grid-template-columns:repeat(2,1fr)}
+    .svc-row{grid-template-columns:1fr;gap:12px;padding:28px 0}
+    .twoq{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .stat{padding:22px 18px}
+    .stat:nth-child(odd){border-left:0;padding-left:0}
+    .quotes{grid-template-columns:1fr}
+    .faq-item{grid-template-columns:1fr;gap:10px}
+    .telemetry{display:none}
+    .h1svg{display:none}
+    .h1svg-m{display:block}
+    .block{max-width:92vw;bottom:4vh}
+    .topnav .social{display:none}
+    .brand img{height:72px}
+    .footer-logo img{height:72px}
+    .footer-ctas .cta{width:100%;justify-content:center;text-align:center}
+  }
+  @media (max-width:520px){
+    .stills{grid-template-columns:1fr}
+  }
+
+  .telemetry{position:absolute;right:2.8vw;bottom:5.4vh;z-index:3;text-align:right;
+    font-family:'JetBrains Mono',monospace;font-size:clamp(10px,0.8vw,15px);letter-spacing:.1em;color:var(--text-body);line-height:2.1}
+  .telemetry b{color:var(--neon-cyan);font-weight:400}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <div class="brand">
-      <img src="assets/logo-web.png" alt="Reignland Media logo">
-      <div class="brand-text">Reignland <span>Media</span></div>
-    </div>
-    <a class="nav-cta" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener">Get a quote</a>
-  </div>
-</nav>
+<!-- shared gradient definition for all SVG text on the page -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff2e88"/>
+      <stop offset="0.5" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+</svg>
 
-<div class="hero">
-  <div class="hero-bg" style="background-image:url(assets/hero-hd.jpg)"></div>
-  <div class="overlay"></div>
-  <div class="glow"></div>
-  <div class="wrap hero-content">
-    <p class="kicker">FPV drone tours · Sunshine Coast to Fraser Coast</p>
-    <h1>Your venue, from inside the action.</h1>
-    <p>One-take FPV fly-throughs that make viewers feel like they&rsquo;re there. Commercial drone tours, aerials and vertical video &mdash; CASA-approved, fully insured.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener">Message for a quote</a>
-      <a class="btn btn-ghost" href="#portfolio">See our work</a>
+<section class="hero">
+  <video autoplay muted loop playsinline webkit-playsinline disablepictureinpicture
+         poster="assets/hero-poster.jpg"
+         src="assets/hero-loop.mp4"></video>
+  <div class="scrim"></div>
+
+  <div class="topbar">
+    <div class="brand">
+      <img src="assets/logo-web.png" alt="Reignland Media">
+    </div>
+    <div class="topnav">
+      <a class="social" href="https://www.tiktok.com/@reignland" rel="noopener">tiktok ↗</a>
+      <a class="social" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener">facebook ↗</a>
+      <a class="quote-chip" href="mailto:admin_derrick@proton.me?subject=FPV%20quote%20request">request a quote</a>
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="readout rainbow"><span class="lead">FPV FLY-THROUGH</span> · NORTH BRISBANE · SUNSHINE COAST · GYMPIE · FRASER COAST · BUNDABERG</p>
+    <h1 class="sr-only">the whole property. one flight.</h1>
+    <svg class="h1svg" viewBox="0 0 1180 130" role="img" aria-label="the whole property. one flight.">
+      <text x="0" y="55" fill="#fffdf9">the whole property.</text>
+      <text x="0" y="110" fill="#fffdf9">one flight.</text>
+    </svg>
+    <svg class="h1svg-m" viewBox="0 0 1180 200" role="img" aria-hidden="true">
+      <text x="0" y="78" fill="#fffdf9">the whole property.</text>
+      <text x="0" y="168" fill="#fffdf9">one flight.</text>
+    </svg>
+    <p class="sub">Immersive FPV drone fly-throughs and aerial imagery for real estate, venues and commercial spaces across North Brisbane, the Sunshine Coast, Gympie, the Fraser Coast and Bundaberg. One flight. Every angle. Fully insured and EVLOS-endorsed by CASA — the legal requirement for FPV tours.</p>
+    <div class="cta-row">
+      <a class="cta" href="mailto:admin_derrick@proton.me?subject=FPV%20quote%20request">message for a quote ↗</a>
+      <a class="cta2" href="#">watch the reel</a>
+    </div>
+  </div>
+
+  <div class="telemetry">
+    <div><b>lat</b> -26.65 · <b>lon</b> 152.95</div>
+    <div><b>alt</b> 12m · <b>spd</b> 8.4 m/s</div>
+    <div><b>reel</b> 32s · 4k source</div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">featured work</p>
+      <svg class="sec-title-svg" width="480" height="84" viewBox="0 0 480 84" role="img" aria-label="showreel">
+        <text x="0" y="66" fill="url(#brandGrad)">showreel</text>
+      </svg>
+    </div>
+    <p class="sec-lede">Real projects across Queensland — venue fly-throughs, property tours, construction progress and coastal aerials. Every video below is a single continuous take.</p>
+  </div>
+
+  <div class="work-grid">
+    <div class="work-item w-feature">
+      <iframe src="https://www.youtube.com/embed/8Pe-GUB29eQ" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+      <div class="work-meta"><span class="t">Terella Brewing — FPV venue tour</span><span class="loc">brewery · qld</span></div>
+    </div>
+    <div class="w-stack">
+      <div class="work-item">
+        <iframe src="https://www.youtube.com/embed/HK7Ze9S3kC4" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <div class="work-meta"><span class="t">138 Callistemon Court — property fly-through</span><span class="loc">cootharaba</span></div>
+      </div>
+      <div class="work-item">
+        <iframe src="https://www.youtube.com/embed/awuMI-1ZAtE" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <div class="work-meta"><span class="t">NextDC — data centre aerials</span><span class="loc">commercial</span></div>
+      </div>
+    </div>
+    <div class="work-item w-wide">
+      <iframe src="https://www.youtube.com/embed/P2C3zVjFlac" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+      <div class="work-meta"><span class="t">Developer project — construction progress + site aerials</span><span class="loc">construction</span></div>
+    </div>
+  </div>
+
+  <div class="sec-head stills-head">
+    <div>
+      <p class="sec-label">stills</p>
+      <svg class="sec-title-svg" width="780" height="84" viewBox="0 0 780 84" role="img" aria-label="aerial imagery">
+        <text x="0" y="66" fill="url(#brandGrad)">aerial imagery</text>
+      </svg>
+    </div>
+    <p class="sec-lede">High-resolution aerial stills for listings, marketing and site documentation — captured across Queensland properties, venues and coastlines.</p>
+  </div>
+  <div class="stills">
+    <a href="https://dronesforhire.com.au/assets/uploads/2025-4/5410-v924z1ofpt.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2025-4/5410-v924z1ofpt.jpg" loading="lazy" alt="Aerial venue shot"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2024-5/5410-v2kgqk1pjh.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2024-5/5410-v2kgqk1pjh.jpg" loading="lazy" alt="Coastal aerial"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2023-0/5410-s7p4mol8xd.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2023-0/5410-s7p4mol8xd.jpg" loading="lazy" alt="Property aerial"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2022-5/5410-lszldej2bm.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-5/5410-lszldej2bm.jpg" loading="lazy" alt="Event aerial"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2022-4/5410-fv8zy5p5md.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-4/5410-fv8zy5p5md.jpg" loading="lazy" alt="Construction progress"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2022-1/5410-qvyr9v6q3j.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-1/5410-qvyr9v6q3j.jpg" loading="lazy" alt="Sunshine Coast aerial"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2022-0/5410-zig7azm8av.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-0/5410-zig7azm8av.jpg" loading="lazy" alt="Aerial landscape"></a>
+    <a href="https://dronesforhire.com.au/assets/uploads/2022-4/5410-lj5m0389gv.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-4/5410-lj5m0389gv.jpg" loading="lazy" alt="Real estate listing"></a>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">what we do</p>
+      <svg class="sec-title-svg" width="380" height="84" viewBox="0 0 380 84" role="img" aria-label="services">
+        <text x="0" y="66" fill="url(#brandGrad)">services</text>
+      </svg>
+    </div>
+    <p class="sec-lede">From one-take FPV tours to standard aerials and night operations — whatever the space, there's a flight plan for it.</p>
+  </div>
+  <div class="svc">
+    <div class="svc-row">
+      <span class="svc-name">fpv drone tours</span>
+      <span class="svc-desc">One-take fly-throughs for venues, listings and events. Indoor and outdoor — we plan around your opening times and busiest hours.</span>
+      <span class="svc-price">from $495</span>
+    </div>
+    <div class="svc-row">
+      <span class="svc-name">standard aerials + 360°</span>
+      <span class="svc-desc">Photo and video for property listings, site progress, roof inspections and commercial projects — including 360° panoramas.</span>
+      <span class="svc-price">quoted per job</span>
+    </div>
+    <div class="svc-row">
+      <span class="svc-name">night operations</span>
+      <span class="svc-desc">ReOC-approved after-dark work — twilight listings, lit venues, events under lights. Non-standard ops available on application.</span>
+      <span class="svc-price">quoted per job</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="trust">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">trust &amp; licensing</p>
+      <svg class="sec-title-svg" width="1010" height="84" viewBox="0 0 1010 84" role="img" aria-label="licensed and insured">
+        <text x="0" y="66" fill="url(#brandGrad)">licensed + insured</text>
+      </svg>
+    </div>
+    <p class="sec-lede">Commercial FPV flying in Australia requires a CASA EVLOS approval. We hold one — so your venue, your guests and your insurance are never at risk.</p>
+  </div>
+  <div class="badges">
+    <span class="badge hl">CASA ReOC operator</span>
+    <span class="badge hl">EVLOS-approved FPV</span>
+    <span class="badge hl">Public liability insured</span>
+    <span class="badge">SCC operating permit</span>
+    <span class="badge">Night ops approved</span>
+  </div>
+  <div class="twoq">
+    <div class="q">
+      <p class="ask">"Do you hold a CASA EVLOS approval for commercial FPV?"</p>
+      <p class="ans">we do.</p>
+    </div>
+    <div class="q">
+      <p class="ask">"Are you insured for commercial FPV work?"</p>
+      <p class="ans pink">yes.</p>
+    </div>
+  </div>
+  <p class="trust-kicker">Before booking any FPV operator, ask those two questions. <b>If the answer is vague, the risk is yours. Ours is covered.</b></p>
+</section>
+
+<section class="section" id="numbers">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">by the numbers</p>
+      <svg class="sec-title-svg" width="1000" height="84" viewBox="0 0 1000 84" role="img" aria-label="nine years in the air">
+        <text x="0" y="66" fill="url(#brandGrad)">nine years in the air</text>
+      </svg>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="num">9 yrs</div><div class="lbl">Drone operations</div></div>
+    <div class="stat"><div class="num">300+</div><div class="lbl">Flight hours logged</div></div>
+    <div class="stat"><div class="num">5.0★</div><div class="lbl">Client rating, all jobs</div></div>
+    <div class="stat"><div class="num">7NEWS</div><div class="lbl">Footage credited on air</div></div>
+  </div>
+  <div class="quotes">
+    <blockquote>&ldquo;Extremely professional, high quality work outputs, reasonable cost, great response time and communication.&rdquo;
+      <footer>Olivia McCubbin <span>&mdash; Niecon</span></footer>
+    </blockquote>
+    <blockquote>&ldquo;Very professional and quick turnaround — will be sending more work in the future.&rdquo;
+      <footer>Michelle Jones <span>&mdash; Professionals Newlands Real Estate</span></footer>
+    </blockquote>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="sec-head">
+    <div>
+      <p class="sec-label">faq</p>
+      <svg class="sec-title-svg" width="620" height="84" viewBox="0 0 620 84" role="img" aria-label="quick answers">
+        <text x="0" y="66" fill="url(#brandGrad)">quick answers</text>
+      </svg>
+    </div>
+  </div>
+  <div class="faq">
+    <div class="faq-item">
+      <h3>What areas do you cover?</h3>
+      <p>North Brisbane, the Sunshine Coast, Gympie, the Fraser Coast and Bundaberg. Extended-hours council permits across the Sunshine Coast region (4:30am–10pm).</p>
+    </div>
+    <div class="faq-item">
+      <h3>How much does an FPV tour cost?</h3>
+      <p>FPV venue tours start at $495. Standard aerials quoted per job. Every project priced with no surprises.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Are you insured and licensed?</h3>
+      <p>Yes. CASA ReOC holder, EVLOS-approved for commercial FPV, public liability insured. Both questions answered.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How fast can I get the footage?</h3>
+      <p>Most projects delivered within 48–72 hours. Rush turnaround available.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo"><img src="assets/logo-web.png" alt="Reignland Media"></div>
+  <p class="sec-label">get in touch</p>
+  <svg class="sec-title-svg" width="1360" height="84" viewBox="0 0 1450 84" role="img" aria-label="the view that sells the space.">
+    <text x="0" y="66" fill="url(#brandGrad)">the view that sells the space.</text>
+  </svg>
+  <div class="footer-ctas">
+    <a class="cta" href="mailto:admin_derrick@proton.me?subject=FPV%20quote%20request">request a quote ↗</a>
+    <a class="cta2" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener" style="align-self:center">message on facebook</a>
+  </div>
+  <div class="fineprint">
+    <p>Reignland Media (formerly Reignscott Drone Imagery Pty Ltd) · Queensland, Australia</p>
+    <p><b>CASA ReOC · EVLOS-approved FPV · Public liability insured · SCC permit (4:30am–10pm)</b></p>
+  </div>
+</footer>
+
+<!-- QUOTE MODAL -->
+<div class="qmodal" id="qmodal" role="dialog" aria-modal="true" aria-label="Request a quote">
+  <div class="qbox" style="position:relative">
+    <button class="qclose" type="button" id="qclose">close ✕</button>
+    <p class="sec-label">request a quote</p>
+    <h3>tell us about the job</h3>
+    <p class="qsub">A few quick details and we come back with a price — usually same day.</p>
+    <form id="qform">
+      <div class="qrow">
+        <div class="qfield"><label for="qname">your name *</label>
+          <input id="qname" name="name" required autocomplete="name"></div>
+        <div class="qfield"><label for="qphone">phone</label>
+          <input id="qphone" name="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="qfield"><label for="qemail">email *</label>
+        <input id="qemail" name="email" type="email" required autocomplete="email"></div>
+      <div class="qrow">
+        <div class="qfield"><label for="qservice">what do you need? *</label>
+          <select id="qservice" name="service" required>
+            <option value="">— select —</option>
+            <option>FPV fly-through tour</option>
+            <option>Standard aerials / photography</option>
+            <option>Night operations</option>
+            <option>Something else</option>
+          </select></div>
+        <div class="qfield"><label for="qwhen">when do you need it?</label>
+          <select id="qwhen" name="timeframe">
+            <option value="">— select —</option>
+            <option>ASAP</option>
+            <option>Within 2 weeks</option>
+            <option>Within a month</option>
+            <option>Just planning ahead</option>
+          </select></div>
+      </div>
+      <div class="qfield"><label for="qwhere">property / venue &amp; location *</label>
+        <input id="qwhere" name="location" required placeholder="e.g. restaurant, Gympie CBD"></div>
+      <div class="qfield"><label for="qmsg">anything else?</label>
+        <textarea id="qmsg" name="message" placeholder="Size of the space, what you want viewers to feel, links..."></textarea></div>
+      <input class="qhoney" type="text" name="_honey" tabindex="-1" autocomplete="off">
+      <button class="qsubmit" type="submit" id="qsend">send request ↗</button>
+    </form>
+    <div class="qdone" id="qdone">
+      <p class="big">received.</p>
+      <p>Your request is in. We'll come back with a quote — usually same day.<br>
+      Urgent? Message us on Facebook for the fastest reply.</p>
     </div>
   </div>
 </div>
 
-<section id="portfolio">
-  <div class="wrap">
-    <p class="eyebrow">Featured work</p>
-    <h2>Featured work</h2>
-    <p class="section-lede">Real projects, real results — venue tours, property fly-throughs, construction progress and coastal aerials across the Sunshine Coast region.</p>
-    <div class="portfolio-grid">
-      <div class="port-item">
-        <iframe src="https://www.youtube.com/embed/8Pe-GUB29eQ" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div class="info"><h3>Terella Brewing — FPV Venue Tour</h3><p>One-take brewery fly-through with DJI Avata 2</p></div>
-      </div>
-      <div class="port-item">
-        <iframe src="https://www.youtube.com/embed/HK7Ze9S3kC4" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div class="info"><h3>138 Callistemon Court — Property Fly-through</h3><p>Full property FPV tour, Cootharaba</p></div>
-      </div>
-      <div class="port-item">
-        <iframe src="https://www.youtube.com/embed/6D-DWX2U0mY" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div class="info"><h3>Real Estate FPV Tours</h3><p>SEQ property walkthroughs and aerials</p></div>
-      </div>
-      <div class="port-item">
-        <iframe src="https://www.youtube.com/embed/P2C3zVjFlac" loading="lazy" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div class="info"><h3>Developer Project — Mavic 3 Pro</h3><p>Construction progress and site aerials</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+<script>
+// cycle logo palette word-by-word across .rainbow elements
+// (.lead span keeps its own cyan; cycle starts at position 2 so the
+//  region colors stay exactly as approved — only the lead changed)
+document.querySelectorAll('.rainbow').forEach(el => {
+  let i = el.querySelector('.lead') ? 2 : 0;
+  [...el.childNodes].forEach(node => {
+    if (node.nodeType !== Node.TEXT_NODE) return;
+    const frag = document.createDocumentFragment();
+    node.textContent.trim().split(/\s+/).filter(Boolean).forEach(w => {
+      const s = document.createElement('span');
+      s.className = 'w' + (i++ % 3);
+      s.textContent = w;
+      frag.appendChild(s);
+      frag.appendChild(document.createTextNode(' '));
+    });
+    node.replaceWith(frag);
+  });
+});
 
-<section class="alt" id="gallery">
-  <div class="wrap">
-    <p class="eyebrow">Portfolio gallery</p>
-    <h2>Portfolio gallery</h2>
-    <p class="section-lede">Aerial stills captured across Queensland venues, properties and coastlines.</p>
-    <div class="gallery">
-      <a href="https://dronesforhire.com.au/assets/uploads/2025-4/5410-v924z1ofpt.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2025-4/5410-v924z1ofpt.jpg" loading="lazy" alt="Aerial venue shot"></a>
-      <a href="https://dronesforhire.com.au/assets/uploads/2024-5/5410-v2kgqk1pjh.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2024-5/5410-v2kgqk1pjh.jpg" loading="lazy" alt="Coastal aerial"></a>
-      <a href="https://dronesforhire.com.au/assets/uploads/2023-0/5410-s7p4mol8xd.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2023-0/5410-s7p4mol8xd.jpg" loading="lazy" alt="Property aerial"></a>
-      <a href="https://dronesforhire.com.au/assets/uploads/2022-5/5410-lszldej2bm.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-5/5410-lszldej2bm.jpg" loading="lazy" alt="Event aerial"></a>
-      <a href="https://dronesforhire.com.au/assets/uploads/2022-4/5410-fv8zy5p5md.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-4/5410-fv8zy5p5md.jpg" loading="lazy" alt="Construction progress"></a>
-      <a href="https://dronesforhire.com.au/assets/uploads/2022-1/5410-qvyr9v6q3j.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-1/5410-qvyr9v6q3j.jpg" loading="lazy" alt="Sunshine Coast aerial"></a>
-      <a href="https://dronesforhire.com.au/assets/uploads/2022-0/5410-zig7azm8av.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-0/5410-zig7azm8av.jpg" loading="lazy" alt="Aerial landscape"></a>
-      <a href="https://dronesforhire.com.au/assets/uploads/2022-4/5410-lj5m0389gv.jpg" target="_blank" rel="noopener"><img src="https://dronesforhire.com.au/assets/uploads/2022-4/5410-lj5m0389gv.jpg" loading="lazy" alt="Real estate listing"></a>
-    </div>
-  </div>
-</section>
+// hero video: ONLY resume on first touch — no load()/play() calls at load time
+// (calling load() after parse resets Safari's resource selection and stalls it:
+//  debug showed networkState=NETWORK_NO_SOURCE with events [waiting, loadstart])
+const heroVid = document.querySelector('.hero video');
+if (heroVid) {
+  const resume = () => { heroVid.muted = true; heroVid.play().catch(() => {}); };
+  document.addEventListener('touchend', resume, { once: true });
+  document.addEventListener('click', resume, { once: true });
 
-<section>
-  <div class="wrap">
-    <p class="eyebrow">Trust &amp; licensing</p>
-    <h2>CASA-approved · Fully insured</h2>
-    <p class="section-lede">Commercial FPV flying in Australia requires a CASA EVLOS approval. We hold one — so your venue, your guests and your insurance are never at risk.</p>
-    <div class="badges">
-      <span class="badge highlight">CASA ReOC operator</span>
-      <span class="badge highlight">EVLOS-approved FPV</span>
-      <span class="badge highlight">Public liability insured</span>
-      <span class="badge">SCC operating permit</span>
-      <span class="badge">Night ops approved</span>
-    </div>
-    <div class="trust-note">
-      <p><strong>Before booking any FPV operator, ask two questions:</strong></p>
-      <p style="margin-top:10px">&ldquo;Do you hold a CASA EVLOS approval for commercial FPV?&rdquo; &mdash; <strong style="color:#e2e8f0">We do.</strong></p>
-      <p>&ldquo;Are you insured for commercial FPV work?&rdquo; &mdash; <strong style="color:#e2e8f0">Yes.</strong></p>
-      <p style="margin-top:16px;color:#e2e8f0">If the answer is vague, the risk is yours. Ours is covered.</p>
-    </div>
-  </div>
-</section>
+  // diagnostic mode: hero-draft.html?debug=1 shows live video state
+  if (location.search.includes('debug=1')) {
+    const box = document.createElement('pre');
+    box.style.cssText = 'position:fixed;top:70px;left:8px;z-index:99;background:#000;color:#0f0;' +
+      'font:11px monospace;padding:8px;max-width:94vw;white-space:pre-wrap;border:1px solid #0f0';
+    document.body.appendChild(box);
+    const events = [];
+    ['loadstart','loadedmetadata','loadeddata','canplay','playing','pause','stalled','suspend','error','waiting']
+      .forEach(ev => heroVid.addEventListener(ev, () => events.push(ev)));
+    const rs = ['HAVE_NOTHING','HAVE_METADATA','HAVE_CURRENT_DATA','HAVE_FUTURE_DATA','HAVE_ENOUGH_DATA'];
+    const ns = ['NETWORK_EMPTY','NETWORK_IDLE','NETWORK_LOADING','NETWORK_NO_SOURCE'];
+    const report = () => {
+      box.textContent =
+        'paused=' + heroVid.paused + ' muted=' + heroVid.muted +
+        ' readyState=' + rs[heroVid.readyState] + ' networkState=' + ns[heroVid.networkState] +
+        '\nerror=' + (heroVid.error ? heroVid.error.code + ' ' + heroVid.error.message : 'none') +
+        '\ncurrentSrc=' + (heroVid.currentSrc || 'NONE') +
+        '\ntime=' + heroVid.currentTime.toFixed(2) + ' duration=' + (heroVid.duration || 'NaN') +
+        '\nevents: ' + events.join(',') +
+        '\nua: ' + navigator.userAgent.slice(0, 80);
+    };
+    report();
+    setInterval(report, 1000);
+  }
+}
 
-<section class="alt">
-  <div class="wrap">
-    <p class="eyebrow">Services</p>
-    <h2>Services</h2>
-    <p class="section-lede">From one-take FPV tours to standard aerials and night operations — every job is planned around your space and your schedule.</p>
-    <div class="services">
-      <div class="service">
-        <h3>FPV drone tours</h3>
-        <div class="price">From $495</div>
-        <p>One-take fly-throughs for venues, listings and events. Indoor and outdoor — planned around your space and your busiest hour.</p>
-      </div>
-      <div class="service">
-        <h3>Standard aerials &amp; 360°</h3>
-        <div class="price">Quoted per job</div>
-        <p>Photo and video for property listings, site progress, roof inspections and commercial projects — including 360° panoramas.</p>
-      </div>
-      <div class="service">
-        <h3>Night operations</h3>
-        <div class="price">Quoted per job</div>
-        <p>ReOC-approved after-dark work — twilight listings, lit venues, events under lights. Non-standard ops available on application.</p>
-      </div>
-    </div>
-  </div>
-</section>
+// ---------- QUOTE MODAL ----------
+const qmodal = document.getElementById('qmodal');
+const qform = document.getElementById('qform');
+const qdone = document.getElementById('qdone');
+// every quote CTA (topnav chip, hero CTA, footer CTA) opens the modal;
+// mailto hrefs stay as the no-JS fallback
+document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+  if (!a.href.includes('quote')) return;
+  a.addEventListener('click', e => { e.preventDefault(); qmodal.classList.add('open'); });
+});
+document.getElementById('qclose').addEventListener('click', () => qmodal.classList.remove('open'));
+qmodal.addEventListener('click', e => { if (e.target === qmodal) qmodal.classList.remove('open'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') qmodal.classList.remove('open'); });
+// ?quote=open opens the modal directly (shareable link / QA)
+if (location.search.includes('quote=open')) qmodal.classList.add('open');
 
-<section>
-  <div class="wrap">
-    <p class="eyebrow">By the numbers</p>
-    <h2>Nine years in the air</h2>
-    <div class="stats">
-      <div class="stat"><div class="num">9 yrs</div><div class="lbl">Drone operations</div></div>
-      <div class="stat"><div class="num">300+</div><div class="lbl">Flight hours logged</div></div>
-      <div class="stat"><div class="num">5.0★</div><div class="lbl">Client rating across all jobs</div></div>
-      <div class="stat"><div class="num">7NEWS</div><div class="lbl">Footage credited on air</div></div>
-    </div>
-    <div class="quotes">
-      <blockquote>&ldquo;Extremely professional, high quality work outputs, reasonable cost, great response time and communication.&rdquo;<footer>Olivia McCubbin <span>&mdash; Niecon</span></footer></blockquote>
-      <blockquote>&ldquo;Very professional and quick turnaround — will be sending more work in the future.&rdquo;<footer>Michelle Jones <span>&mdash; Professionals Newlands Real Estate</span></footer></blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <p class="eyebrow">Quick answers</p>
-    <h2>Quick answers</h2>
-    <div class="faq-grid">
-      <div class="faq-item">
-        <h3>What areas do you cover?</h3>
-        <p>Servicing From North Brisbane Suburbs, Sunshine Coast and Fraser Coast. Extended-hours council permits across the Sunshine Coast region (4:30am–10pm).</p>
-      </div>
-      <div class="faq-item">
-        <h3>How much does an FPV tour cost?</h3>
-        <p>FPV venue tours start at $495. Standard aerials quoted per job. Every project priced with no surprises.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Are you insured and licensed?</h3>
-        <p>Yes. CASA ReOC holder, EVLOS-approved for commercial FPV, public liability insured. Both questions answered.</p>
-      </div>
-      <div class="faq-item">
-        <h3>How fast can I get the footage?</h3>
-        <p>Most projects delivered within 24 hours. Rush turnaround available.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-logo"><img src="assets/logo-web.png" alt="Reignland Media logo"></div>
-    <p class="eyebrow">Get in touch</p>
-    <h2>Ready to see your place from inside the action?</h2>
-    <p class="section-lede" style="margin-bottom:0">Message us with your venue or listing and we&rsquo;ll come back with a same-day quote.</p>
-    <div class="footer-links">
-      <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=100078208865922" rel="noopener">Message on Facebook</a>
-      <a class="btn btn-ghost" href="mailto:admin_derrick@proton.me">Email us</a>
-    </div>
-    <div class="fineprint">
-      <p>Reignland Media (formerly Reignscott Drone Imagery Pty Ltd) &middot; Sunshine Coast, Queensland</p>
-      <p><strong>CASA ReOC &middot; EVLOS-approved FPV &middot; Public liability insured &middot; SCC permit (4:30am–10pm)</strong></p>
-    </div>
-  </div>
-</footer>
+qform.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = document.getElementById('qsend');
+  btn.textContent = 'sending...';
+  const data = Object.fromEntries(new FormData(qform).entries());
+  data._subject = 'FPV quote request — ' + (data.name || 'website');
+  try {
+    const r = await fetch('https://formsubmit.co/ajax/admin_derrick@proton.me', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (!r.ok) throw new Error('relay ' + r.status);
+    qform.style.display = 'none';
+    qdone.style.display = 'block';
+  } catch (err) {
+    // relay failed — fall back to the visitor's own mail client with prefilled body
+    const body = encodeURIComponent(
+      'Name: ' + (data.name || '') + '\nPhone: ' + (data.phone || '') +
+      '\nEmail: ' + (data.email || '') + '\nService: ' + (data.service || '') +
+      '\nTimeframe: ' + (data.timeframe || '') + '\nLocation: ' + (data.location || '') +
+      '\n\n' + (data.message || ''));
+    location.href = 'mailto:admin_derrick@proton.me?subject=' + encodeURIComponent('FPV quote request') + '&body=' + body;
+  }
+});
+</script>
 
 </body>
 </html>
