@@ -95,12 +95,12 @@
   /* uniform 2×2 grid — every tile identical size */
   .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
   .work-item{position:relative;border:.5px solid var(--border);border-radius:6px;
-    overflow:hidden;background:var(--surface)}
+    overflow:hidden;background:var(--surface);display:flex;flex-direction:column}
   .work-item iframe,.work-item img,.work-item video{width:100%;aspect-ratio:16/9;border:0;display:block;object-fit:cover;background:#000}
   .w-feature,.w-wide{grid-column:auto}
   .w-stack{display:contents}
   .w-wide video{aspect-ratio:16/9}
-  .work-meta{display:flex;align-items:baseline;gap:14px;padding:16px 18px;
+  .work-meta{display:flex;align-items:center;gap:14px;padding:16px 18px;flex:1;
     border-top:.5px solid var(--border);font-family:'JetBrains Mono',monospace}
   .work-meta .t{font-size:clamp(16px,1.25vw,24px);color:var(--text-primary)}
   .work-meta .loc{font-size:clamp(13px,1vw,18px);color:var(--text-body);margin-left:auto;letter-spacing:.08em}
