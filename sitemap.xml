@@ -48,4 +48,41 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://reignlandmedia.com/guides/casa-drone-regulations-commercial-australia-guide/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://reignlandmedia.com/guides/casa-evlosexplained-commercial-fpv-australia/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://reignlandmedia.com/guides/client-liability-unlicensed-drone-operators/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://reignlandmedia.com/guides/fpv-vs-standard-drone-comparison/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://reignlandmedia.com/guides/how-to-choose-licensed-fpv-operator-queensland/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://reignlandmedia.com/guides/reoc-remote-operators-certificate-explained/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
