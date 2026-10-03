@@ -373,6 +373,18 @@
     font-family:'JetBrains Mono',monospace;font-size:clamp(10px,0.8vw,15px);letter-spacing:.1em;color:var(--text-body);line-height:2.1}
   .telemetry b{color:var(--neon-cyan);font-weight:400}
 </style>
+<!-- rl-analytics:start -->
+<!-- provider=goatcounter:reignlandmedia -->
+<script data-goatcounter="https://reignlandmedia.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<script>
+  window.rlTrack = function(name){
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: name, title: name, event: true });
+    }
+  };
+</script>
+<!-- rl-analytics:end -->
 </head>
 <body>
 
@@ -723,7 +735,10 @@ const qdone = document.getElementById('qdone');
 // mailto hrefs stay as the no-JS fallback
 document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
   if (!a.href.includes('quote')) return;
-  a.addEventListener('click', e => { e.preventDefault(); qmodal.classList.add('open'); });
+  a.addEventListener('click', e => {
+    e.preventDefault(); qmodal.classList.add('open');
+    if (window.rlTrack) window.rlTrack('quote_cta_click', { cta: (a.textContent || '').trim() });
+  });
 });
 document.getElementById('qclose').addEventListener('click', () => qmodal.classList.remove('open'));
 qmodal.addEventListener('click', e => { if (e.target === qmodal) qmodal.classList.remove('open'); });
@@ -746,6 +761,10 @@ qform.addEventListener('submit', async e => {
     if (!r.ok) throw new Error('relay ' + r.status);
     qform.style.display = 'none';
     qdone.style.display = 'block';
+    // conversion: a submitted quote request is THE business event we measure
+    if (window.rlTrack) window.rlTrack('quote_submit', {
+      service: data.service || '', timeframe: data.timeframe || '', location: data.location || ''
+    });
   } catch (err) {
     // relay failed — fall back to the visitor's own mail client with prefilled body
     const body = encodeURIComponent(
